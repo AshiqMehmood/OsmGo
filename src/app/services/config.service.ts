@@ -88,7 +88,8 @@ export class ConfigService {
         changeSetComment: '',
         languageUi: window.navigator.language.split('-')[0] || null,
         languageTags: window.navigator.language.split('-')[0] || null,
-        countryTags: window.navigator.language && window.navigator.language.split('-')[1] ? window.navigator.language.split('-')[1].toUpperCase() : null,
+        // countryTags: window.navigator.language && window.navigator.language.split('-')[1] ? window.navigator.language.split('-')[1].toUpperCase() : null,
+        countryTags: 'IN',
         oldTagsIcon: { display: true, year: 4 },
         displayFixmeIcon: true,
         addSurveyDate: true,
@@ -168,7 +169,7 @@ export class ConfigService {
                     }
 
                     this.config.languageTags = this.config.languageTags || 'en';
-                    this.config.countryTags = this.config.countryTags || 'GB';
+                    this.config.countryTags = this.config.countryTags || 'US';
 
                     this.setIsSelectableLine(this.config.isSelectableLine);
                     this.setIsSelectablePolygon(this.config.isSelectablePolygon);
