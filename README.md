@@ -28,6 +28,7 @@ POI Map! is a _PWA_ application using Ionic 4 and Angular 8. It uses the map ren
 #### Installation 
 1) Install npm dependencies globally
 ```sh
+npm install -g @angular/cli
 npm install -g ionic
 ```
 2) Clone this repo and install
