@@ -18,8 +18,58 @@ const routes: Routes = [
   { path: 'pushData', component: PushDataToOsmPage},
   { path: 'login', component: LoginPage},
   { path: 'tags', component: ManageTagsComponent},
-  { path: 'edit', component: AddPointsComponent}
+  { path: 'edit', component: AddPointsComponent,
+  children: [
+    {
+        path: 'common', // child route path
+        children: [
+          {
+            path: '',
+            component: AddPointsComponent
+          }
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/edit/common',
+        pathMatch: 'full'
+    },
 
+    {
+      path: 'bookmarks', // child route path
+      children: [
+        {
+          path: '',
+          component: SettingsPage
+        }
+      ]
+    },
+    {
+      path: '',
+      redirectTo: '/edit/bookmarks',
+      pathMatch: 'full'
+    },
+    {
+        path: 'all tags', // child route path
+        children: [
+          {
+            path: '',
+            component: AboutPage
+          }
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/edit/all tags',
+        pathMatch: 'full'
+      } 
+
+  ],
+
+
+
+
+}
 ];
 
 @NgModule({
