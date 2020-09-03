@@ -2,6 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule,HammerModule} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSidenavModule} from '@angular/material/sidenav'; 
+import {MatTabsModule} from '@angular/material/tabs'; 
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';  
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AngularResizedEventModule } from 'angular-resize-event';
@@ -17,6 +26,7 @@ import { AboutPage } from './components/about/about';
 import { MainPage } from './components/main/main';
 import { MenuPage } from './components/menu/menu';
 import { LoginPage } from './components/login/login.component';
+import { AddPointsComponent } from "./components/add-points/add-points.component";
 
 import { ModalsContentPage } from './components/modal/modal';
 import { ModalPrimaryTag } from './components/modal/modal.primaryTag/modal.primaryTag';
@@ -47,10 +57,6 @@ import { FilterByPresetsContentPipe } from './pipes/filterByPresetsContent.pipe'
 
 import { FilterDeprecatedTagPipe } from './pipes/filterDeprecatedTag.pipe';
 import { FilterExcludeKeysPipe } from './pipes/filterExcludeKeys.pipe';
-
-
-
-
 
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -103,7 +109,8 @@ export function createTranslateLoader(http: HttpClient) {
     FilterDeprecatedTagPipe,
     FilterExcludeKeysPipe,
     DisplayTagsPipe, FilterByByGeometryTypePipe, IsBookmarkedPipe,
-    FilterBySearchablePipe, FiltersTagsByIdsPipe, SortArrayPipe, LimitDisplayTagsPipe,
+    FilterBySearchablePipe, FiltersTagsByIdsPipe, SortArrayPipe, LimitDisplayTagsPipe, 
+    AddPointsComponent
   ],
   entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent],
   imports: [
@@ -117,6 +124,14 @@ export function createTranslateLoader(http: HttpClient) {
     MomentModule,
     HammerModule,
     AngularResizedEventModule,
+    MatGridListModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
