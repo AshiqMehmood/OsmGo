@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {  NavParams } from '@ionic/angular';
-import { TagsService } from '../../services/tags.service';
-import { ConfigService } from '../../services/config.service';
-import { TagConfig } from '../../../type'
+import {MatChipInputEvent} from '@angular/material/chips';
 import { MenuController } from '@ionic/angular'
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 export interface Tile {
     color: string;
@@ -11,8 +9,7 @@ export interface Tile {
     rows: number;
     text: string;
   }
-
-  
+ 
 @Component({
   selector: 'app-add-points',
   templateUrl: './add-points.component.html',
@@ -24,25 +21,21 @@ export class AddPointsComponent implements OnInit {
     value: string= ""
     chip: string = ""
     load:boolean = false
-
-    selectedKey: string;
-    tagsOfselectedKey;
-    loading = true;
-    allTags: TagConfig[];
+    input: string = ""
+   
+ 
     searchText = '';
-    currentListOfTags: TagConfig[] = [];
-    typeFiche = 'list';
-    customValue = '';
-    oldTagConfig: TagConfig;
-    geometriesPossible: string[] = []
-    geometryType: 'point' | 'vertex' | 'line' | 'area'
-    displayType = 'lastTags'
+ 
 
     add(text, text2){
         this.chip = text + '=' + text2
     }
 
-
+    delete(text){
+        this.input = ""
+        text = this.input
+    }
+    
   constructor(private menu: MenuController
        
     ) {

@@ -10,6 +10,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';  
 import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatChipsModule} from '@angular/material/chips'; 
 
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -132,6 +133,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
+    MatChipsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
