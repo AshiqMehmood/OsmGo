@@ -10,6 +10,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';  
 import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatIconModule} from '@angular/material/icon'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+import {MatListModule} from '@angular/material/list'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -27,6 +33,10 @@ import { MainPage } from './components/main/main';
 import { MenuPage } from './components/menu/menu';
 import { LoginPage } from './components/login/login.component';
 import { AddPointsComponent } from "./components/add-points/add-points.component";
+import {CommontagsComponent } from "./components/add-points/commontags/commontags.component"
+import {AlltagsComponent } from "./components/add-points/alltags/alltags.component"
+import {BookmarksComponent } from "./components/add-points/bookmarks/bookmarks.component"
+import {TagTypeComponent} from "./components/add-points/tag-type/tag-type.component"
 
 import { ModalsContentPage } from './components/modal/modal';
 import { ModalPrimaryTag } from './components/modal/modal.primaryTag/modal.primaryTag';
@@ -110,7 +120,12 @@ export function createTranslateLoader(http: HttpClient) {
     FilterExcludeKeysPipe,
     DisplayTagsPipe, FilterByByGeometryTypePipe, IsBookmarkedPipe,
     FilterBySearchablePipe, FiltersTagsByIdsPipe, SortArrayPipe, LimitDisplayTagsPipe, 
-    AddPointsComponent
+    AddPointsComponent,
+    CommontagsComponent,
+    AlltagsComponent,
+    BookmarksComponent,
+    TagTypeComponent
+   
   ],
   entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent],
   imports: [
@@ -132,6 +147,13 @@ export function createTranslateLoader(http: HttpClient) {
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatListModule,
+    MatSnackBarModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

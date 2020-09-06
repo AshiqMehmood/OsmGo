@@ -6,6 +6,10 @@ import { MainPage } from './components/main/main';
 import { SettingsPage } from './components/settings/settings';
 import { LoginPage } from './components/login/login.component';
 import { AddPointsComponent } from "./components/add-points/add-points.component"
+import {CommontagsComponent } from "./components/add-points/commontags/commontags.component"
+import {AlltagsComponent } from "./components/add-points/alltags/alltags.component"
+import {BookmarksComponent } from "./components/add-points/bookmarks/bookmarks.component"
+import {TagTypeComponent} from "./components/add-points/tag-type/tag-type.component"
 
 
 import { ManageTagsComponent } from './components/manage-tags/manage-tags.component';
@@ -18,6 +22,7 @@ const routes: Routes = [
   { path: 'pushData', component: PushDataToOsmPage},
   { path: 'login', component: LoginPage},
   { path: 'tags', component: ManageTagsComponent},
+  { path: 'type', component: TagTypeComponent},
   { path: 'edit', component: AddPointsComponent,
   children: [
     {
@@ -25,7 +30,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: AddPointsComponent
+            component: CommontagsComponent
           }
         ]
       },
@@ -40,7 +45,7 @@ const routes: Routes = [
       children: [
         {
           path: '',
-          component: SettingsPage
+          component: BookmarksComponent
         }
       ]
     },
@@ -54,7 +59,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: AboutPage
+            component: AlltagsComponent
           }
         ]
       },

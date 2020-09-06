@@ -43,6 +43,7 @@
     "lodash": "^4.17.15",
     "mapbox-gl": "^1.11.0",
     "martinez-polygon-clipping": "^0.7.0",
+    "material-design-icons": "^3.0.1",
     "moment": "^2.24.0",
     "ngx-moment": "^3.5.0",
     "osm-auth": "github:DoFabien/osm-auth#master",
