@@ -16,6 +16,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import {MatListModule} from '@angular/material/list'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import {MatTreeModule} from '@angular/material/tree'; 
+import {MatSelectModule} from '@angular/material/select'; 
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -153,6 +156,10 @@ export function createTranslateLoader(http: HttpClient) {
     MatAutocompleteModule,
     MatListModule,
     MatSnackBarModule,
+    MatTreeModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    
 
     TranslateModule.forRoot({
       loader: {

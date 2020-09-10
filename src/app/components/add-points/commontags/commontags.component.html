@@ -37,6 +37,7 @@
                                  placeholder="Select Type*"
                                  aria-label="State"
                                  [matAutocomplete]="auto"
+                                 [formControl]="stateCtrl"
                           >
                           <mat-icon matSuffix>arrow_drop_down</mat-icon>
                           <mat-autocomplete #auto="matAutocomplete">
@@ -146,6 +147,7 @@
                
                   
             </mat-list-item>
+            
             <mat-list-item>  
                 <mat-icon mat-list-icon>http</mat-icon>   
                     <mat-form-field class="example-form-field">
@@ -163,7 +165,7 @@
                   
             </mat-list-item>
             <mat-list-item style="display: flex; justify-content: end; margin: 2px; padding: 1px;">
-                <button  mat-raised-button color="warn">Advanced 
+                <button  mat-raised-button color="warn" (click)="pushPage('/edit/all tags')">Advanced 
                     <mat-icon matSuffix>navigate_next</mat-icon>
                 </button>
             </mat-list-item>

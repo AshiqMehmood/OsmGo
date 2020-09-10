@@ -3,6 +3,9 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {NestedTreeControl} from '@angular/cdk/tree';
+import {MatTreeNestedDataSource} from '@angular/material/tree';
+import {NavController} from '@ionic/angular'
 
 export interface State {
     flag: string;
@@ -10,6 +13,8 @@ export interface State {
     population: string;
   }
 
+  
+ 
 @Component({
   selector: 'app-commontags',
   templateUrl: './commontags.component.html',
@@ -27,7 +32,7 @@ export class CommontagsComponent implements OnInit {
     stateCtrl = new FormControl();
     filteredStates: Observable<State[]>;
     filteredHours: Observable<string[]>;
-  
+ 
     states: State[] = [
       {
         name: 'Aeroway',
@@ -79,19 +84,21 @@ export class CommontagsComponent implements OnInit {
       }
     ];
 
-  constructor(private _snackBar: MatSnackBar) {
-    this.filteredStates = this.stateCtrl.valueChanges
-    .pipe(
-      startWith(''),
-      map(state => state ? this._filterStates(state) : this.states.slice())
-    );
+   
+  constructor(private _snackBar: MatSnackBar, private navCtrl: NavController) {
+   
 
     this.filteredHours = this.myControl.valueChanges.pipe(
         startWith(''),
         map(value => this._filterhours(value))
       );
+
+      
    } 
-   
+   pushPage(value){
+       this.navCtrl.navigateForward(value)
+   }
+
    
    openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -111,7 +118,14 @@ export class CommontagsComponent implements OnInit {
   }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.filteredStates = this.stateCtrl.valueChanges
+    .pipe(
+      startWith(''),
+      map(state => state ? this._filterStates(state) : this.states.slice())
+    );
+  }
 
 }
 
