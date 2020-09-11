@@ -39,7 +39,7 @@
                                  [matAutocomplete]="auto"
                                  [formControl]="stateCtrl"
                           >
-                          <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                          <mat-icon matSuffix>search</mat-icon>
                           <mat-autocomplete #auto="matAutocomplete">
                             <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
                               <mat-icon mat-list-icon>{{state.flag}}</mat-icon>
