@@ -1,33 +1,39 @@
 <div id="menu" *ngIf="menuIsOpen" (swipeleft)="swipe($event)" @menuAnimation>
 	<div class="menuContent" *ngIf="menuIsOpen">
 		<ion-header>
-			<ion-toolbar color="primary">
-				<ion-title>Osm Go!</ion-title>
-				<div class="menu-button" (click)="closeMenu()">
-					<ion-ripple-effect></ion-ripple-effect>
-					<ion-icon style="height: 56px;" name="arrow-back"></ion-icon>
-				</div>
-
-			</ion-toolbar>
+			<ion-toolbar style="border:none; padding-bottom:10px;">
+				<ion-title style="padding: 10px;"><span style="color:#5C6776;">Mapathon </span><span style="color:#00b359;">Keralam</span></ion-title>
+		
+			</ion-toolbar>  
 		</ion-header>
-		<ion-content>
+		<ion-content style="margin-top:4px; padding-top: 8px;">
 
+            <ion-item color="primary" button (click)="pushPage('/login')"
+                      *ngIf="!this.configService.user_info.connected"
+            >
+                <ion-label slot="start">
+                 <strong>Sign In</strong> 
+                </ion-label>
+                <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+              </ion-item>
 
-			<ion-list style="padding-top:0;">
+         
+
+			<ion-list style="padding-top:5px;" lines="none">
 
 				<ion-item color="black" *ngIf="this.newVersion" (click)="reloadApp()">
 					<ion-icon name="refresh"></ion-icon> {{'MENU.NEW_VERSION' | translate }}
 				</ion-item>
-
+<!--
 				<ion-item				
 					*ngIf="!this.configService.user_info.connected"
 					(click)="pushPage('/login')">
 					<ion-icon name="log-in"></ion-icon> {{'MENU.CONNECTION' | translate }}
 				</ion-item>
-
+-->
 
 				<ion-item (click)="pushPage('/tags')">
-					<ion-icon name="settings"></ion-icon> {{'MENU.TAG_MANAGEMENT' | translate }} 
+					<ion-icon name="pricetag-outline"></ion-icon> {{'MENU.TAG_MANAGEMENT' | translate }} 
 				</ion-item>
 
 				<ion-item (click)="pushPage('/settings')">
@@ -35,20 +41,22 @@
                 </ion-item>
 
 				<ion-item (click)="pushPage('/about')">
-					<ion-icon name="help-circle"></ion-icon> {{'MENU.ABOUT' | translate }}
+					<ion-icon name="information-circle-outline"></ion-icon> {{'MENU.ABOUT' | translate }}
 				</ion-item>
 
-				<ion-item *ngIf="this.configService.user_info.connected" (click)="logout()">
-					<ion-icon name="log-out"></ion-icon> {{'MENU.SIGN_OUT' | translate }}
-				</ion-item>
-
-				<ion-item color="danger" (click)="deleteDatapresentConfirm()">
+				
+				<ion-item (click)="deleteDatapresentConfirm()">
 					<ion-icon name="trash"></ion-icon> {{'MENU.DELETE_DATA' | translate }}
 				</ion-item>
 
 				<ion-item *ngIf="configService.platforms.includes('hybrid')" (click)="exit()">
 					<ion-icon name="exit"></ion-icon> {{'MENU.EXIT' | translate }}
+                </ion-item>
+                
+                <ion-item color="light" *ngIf="this.configService.user_info.connected" (click)="logout()">
+					<ion-icon name="log-out"></ion-icon> {{'MENU.SIGN_OUT' | translate }}
 				</ion-item>
+
 			</ion-list>
 		</ion-content>
 	</div>

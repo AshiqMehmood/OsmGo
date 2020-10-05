@@ -8,8 +8,6 @@ import { LoginPage } from './components/login/login.component';
 import { AddPointsComponent } from "./components/add-points/add-points.component"
 import {CommontagsComponent } from "./components/add-points/commontags/commontags.component"
 import {AlltagsComponent } from "./components/add-points/alltags/alltags.component"
-import {BookmarksComponent } from "./components/add-points/bookmarks/bookmarks.component"
-import {TagTypeComponent} from "./components/add-points/tag-type/tag-type.component"
 
 
 import { ManageTagsComponent } from './components/manage-tags/manage-tags.component';
@@ -22,7 +20,6 @@ const routes: Routes = [
   { path: 'pushData', component: PushDataToOsmPage},
   { path: 'login', component: LoginPage},
   { path: 'tags', component: ManageTagsComponent},
-  { path: 'type', component: TagTypeComponent},
   { path: 'edit', component: AddPointsComponent,
   children: [
     {
@@ -40,20 +37,6 @@ const routes: Routes = [
         pathMatch: 'full'
     },
 
-    {
-      path: 'bookmarks', // child route path
-      children: [
-        {
-          path: '',
-          component: BookmarksComponent
-        }
-      ]
-    },
-    {
-      path: '',
-      redirectTo: '/edit/bookmarks',
-      pathMatch: 'full'
-    },
     {
         path: 'all tags', // child route path
         children: [
