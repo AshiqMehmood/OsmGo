@@ -8,18 +8,20 @@ import { LoginPage } from './components/login/login.component';
 import { AddPointsComponent } from "./components/add-points/add-points.component"
 import {CommontagsComponent } from "./components/add-points/commontags/commontags.component"
 import {AlltagsComponent } from "./components/add-points/alltags/alltags.component"
+import { LandingPageComponent } from "./components/landing-page/landing-page.component"
 
 
 import { ManageTagsComponent } from './components/manage-tags/manage-tags.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'main' },
+  { path: '', pathMatch: 'full', redirectTo: 'signin' },
   { path: 'main', component: MainPage },
   { path: 'about', component: AboutPage },
   { path: 'settings', component: SettingsPage},
   { path: 'pushData', component: PushDataToOsmPage},
   { path: 'login', component: LoginPage},
   { path: 'tags', component: ManageTagsComponent},
+  { path: 'signin', component: LandingPageComponent },
   { path: 'edit', component: AddPointsComponent,
   children: [
     {

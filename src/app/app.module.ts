@@ -39,6 +39,7 @@ import { LoginPage } from './components/login/login.component';
 import { AddPointsComponent } from "./components/add-points/add-points.component";
 import {CommontagsComponent } from "./components/add-points/commontags/commontags.component"
 import {AlltagsComponent } from "./components/add-points/alltags/alltags.component"
+import { LandingPageComponent } from "./components/landing-page/landing-page.component"
 
 import { ModalsContentPage } from './components/modal/modal';
 import { ModalPrimaryTag } from './components/modal/modal.primaryTag/modal.primaryTag';
@@ -124,7 +125,8 @@ export function createTranslateLoader(http: HttpClient) {
     FilterBySearchablePipe, FiltersTagsByIdsPipe, SortArrayPipe, LimitDisplayTagsPipe, 
     AddPointsComponent,
     CommontagsComponent,
-    AlltagsComponent
+    AlltagsComponent,
+    LandingPageComponent
    
   ],
   entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent],
