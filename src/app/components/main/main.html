@@ -36,6 +36,12 @@
    >
         <span class="text-primary">OK</span>
   </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with upload icon"
+     (click)="navCtrl.navigateForward('/pushData')"
+     *ngIf="dataService.geojsonChanged && dataService.geojsonChanged.features.length > 0 && !mapService.markerMoving"
+    >
+    <mat-icon [style.color]="'#0099ff'" >cloud_upload</mat-icon>
+   </button>
  </mat-toolbar>
 
 
@@ -53,14 +59,14 @@
 				<ion-icon name="menu"></ion-icon>
 			</ion-fab-button>
 		</ion-fab>
--->
+
 		<ion-fab style="right:0 ;top: 0; margin:6px; margin-right:46px"
 			*ngIf="dataService.geojsonChanged && dataService.geojsonChanged.features.length > 0 && !mapService.markerMoving" >
 			<ion-fab-button (click)= "navCtrl.navigateForward('/pushData')">
 				<ion-icon name="cloud-upload"></ion-icon>
 			</ion-fab-button>
 		</ion-fab>
-
+	-->
         <ion-fab *ngIf="!loadingData" style="right: 0; bottom: 0;  margin:6px;" >
             
 			<ion-button size="large"  style="padding: 4px;" color="light" shape="round" tappable  (click)="loadData()" arrow="true" event="press" [disabled]="configService.currentZoom < 14">
