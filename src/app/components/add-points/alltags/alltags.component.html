@@ -1,0 +1,74 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>close</mat-icon>
+    </button>
+    <span>Advanced Options</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <ion-content>
+      <div>
+          <mat-list class="app-class">
+            <div mat-subheader style="color: #0000CD;">Add Tags</div>
+
+              <mat-list-item>
+                <mat-form-field appearance="fill" class="example-full-width" >
+                    <mat-label>Key</mat-label>
+                    <mat-select>
+                      <mat-option value="option">amenity</mat-option>
+                      <mat-option value="option">shop</mat-option>
+                      <mat-option value="option">sport</mat-option>
+                      <mat-option value="option">highway</mat-option>
+                      <mat-option value="option">emergency</mat-option>
+                      <mat-option value="option">railway</mat-option>
+
+                    </mat-select>
+                    <mat-hint align="end">Ex: building</mat-hint>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Value</mat-label>
+                    <mat-select>
+                      <mat-option value="option">Cafe</mat-option>
+                      <mat-option value="option">building</mat-option>
+                      <mat-option value="option">office</mat-option>
+                      <mat-option value="option">bus stop</mat-option>
+                    </mat-select>
+                    <mat-hint align="end">Ex: yes</mat-hint>
+                  </mat-form-field>
+              </mat-list-item>
+
+              <mat-list-item class="chip">
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                  <mat-chip>
+                    
+                   building=hospital
+                    <mat-icon matChipRemove >cancel</mat-icon>
+                  </mat-chip>
+                  <mat-chip>
+                    
+                   amenity=doctors                  
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                  </mat-chip>                 
+                
+                </mat-chip-list>
+              </mat-list-item>
+
+              <mat-divider></mat-divider>
+
+              <div mat-subheader style="color: #0000CD;">Add Relation</div>
+              <mat-list-item>
+                <button  mat-raised-button color="warn">
+                    <mat-icon matSuffix>add</mat-icon>
+                </button>
+              </mat-list-item>
+            
+
+          </mat-list>
+      </div>
+  </ion-content>

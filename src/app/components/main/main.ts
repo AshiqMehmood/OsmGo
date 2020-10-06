@@ -104,6 +104,7 @@ export class MainPage implements AfterViewInit {
 
     });
 
+   
 
 
     mapService.eventShowModal.subscribe(async (_data) => {
@@ -198,6 +199,17 @@ export class MainPage implements AfterViewInit {
     });
 
   }
+
+
+
+  //-------------------------------------------------------------------------
+
+  pushPage(path) { //  (click) = mapService.openModalOsm
+    this.navCtrl.navigateForward(path)
+}
+//------------------------------------------------------------------------------
+
+
 
   loadData() {
     // L'utilisateur charge les données, on supprime donc le tooltip

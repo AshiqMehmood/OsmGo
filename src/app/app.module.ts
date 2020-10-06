@@ -1,7 +1,26 @@
-import { NgModule, Injectable } from '@angular/core';
-import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule,HammerModule} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import * as Hammer from 'hammerjs';
+
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSidenavModule} from '@angular/material/sidenav'; 
+import {MatTabsModule} from '@angular/material/tabs'; 
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';  
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatIconModule} from '@angular/material/icon'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+import {MatListModule} from '@angular/material/list'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import {MatTreeModule} from '@angular/material/tree'; 
+import {MatSelectModule} from '@angular/material/select'; 
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatChipsModule} from '@angular/material/chips'; 
+
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AngularResizedEventModule } from 'angular-resize-event';
@@ -17,6 +36,10 @@ import { AboutPage } from './components/about/about';
 import { MainPage } from './components/main/main';
 import { MenuPage } from './components/menu/menu';
 import { LoginPage } from './components/login/login.component';
+import { AddPointsComponent } from "./components/add-points/add-points.component";
+import {CommontagsComponent } from "./components/add-points/commontags/commontags.component"
+import {AlltagsComponent } from "./components/add-points/alltags/alltags.component"
+import { LandingPageComponent } from "./components/landing-page/landing-page.component"
 
 import { ModalsContentPage } from './components/modal/modal';
 import { ModalPrimaryTag } from './components/modal/modal.primaryTag/modal.primaryTag';
@@ -47,10 +70,6 @@ import { FilterByPresetsContentPipe } from './pipes/filterByPresetsContent.pipe'
 
 import { FilterDeprecatedTagPipe } from './pipes/filterDeprecatedTag.pipe';
 import { FilterExcludeKeysPipe } from './pipes/filterExcludeKeys.pipe';
-
-
-
-
 
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -86,16 +105,6 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-@Injectable()
-export class CustomHammerConfig extends HammerGestureConfig {
-  overrides = {
-    'pan': {
-      direction: Hammer.DIRECTION_ALL
-    }
-  }
-
-}
-
 @NgModule({
   declarations: [AppComponent, MainPage, AboutPage, MenuPage, LoginPage,
     HiddenTagsComponent, ActiveTagsComponent,BookmarkedTagsComponent,  ManageTagsComponent,
@@ -113,7 +122,12 @@ export class CustomHammerConfig extends HammerGestureConfig {
     FilterDeprecatedTagPipe,
     FilterExcludeKeysPipe,
     DisplayTagsPipe, FilterByByGeometryTypePipe, IsBookmarkedPipe,
-    FilterBySearchablePipe, FiltersTagsByIdsPipe, SortArrayPipe, LimitDisplayTagsPipe,
+    FilterBySearchablePipe, FiltersTagsByIdsPipe, SortArrayPipe, LimitDisplayTagsPipe, 
+    AddPointsComponent,
+    CommontagsComponent,
+    AlltagsComponent,
+    LandingPageComponent
+   
   ],
   entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent],
   imports: [
@@ -125,7 +139,27 @@ export class CustomHammerConfig extends HammerGestureConfig {
     AppRoutingModule,
     HttpClientModule,
     MomentModule,
+    HammerModule,
     AngularResizedEventModule,
+    MatGridListModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatTreeModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatChipsModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -139,7 +173,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
   providers: [
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+
   ],
   bootstrap: [AppComponent]
 })
