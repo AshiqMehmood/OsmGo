@@ -32,7 +32,7 @@
    <span class="example-spacer"></span>
  
    <button  *ngIf="mapService.markerMoving" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
-    (click)= "pushPage('/edit')"
+   		(click) = mapService.openModalOsm()
    >
         <span class="text-primary">OK</span>
   </button>
@@ -67,7 +67,7 @@
 			</ion-fab-button>
 		</ion-fab>
 	-->
-        <ion-fab *ngIf="!loadingData" style="right: 0; bottom: 0;  margin:6px;" >
+        <ion-fab *ngIf="!loadingData" style="right: 0; bottom: 40px;  margin:6px;" >
             
 			<ion-button size="large"  style="padding: 4px;" color="light" shape="round" tappable  (click)="loadData()" arrow="true" event="press" [disabled]="configService.currentZoom < 14">
 				<ion-icon name="cloud-download-outline"></ion-icon>
@@ -92,11 +92,11 @@
 
 -->
 <ion-fab 
-		style="right:0; top:0; margin:6px; margin-top:156px" >
+		style="right:0; top:0; margin:6px; margin-top:150px" >
 			<ion-fab-button tappable ion-fab fab-bottom [color]="mapService.isDisplaySatelliteBaseMap ? 'primary' : 'light'  "
 			 (click)="mapService.displaySatelliteBaseMap(configService.getBaseMapId(), !mapService.isDisplaySatelliteBaseMap)">
-			 <img *ngIf="mapService.isDisplaySatelliteBaseMap"  src="assets/map-view.svg" class="rounded-circle"/> 
-			 <img *ngIf="!mapService.isDisplaySatelliteBaseMap" src="assets/sat-view.svg" class="rounded-circle"/> 
+			 <img *ngIf="mapService.isDisplaySatelliteBaseMap"  src="assets/offline-sat.svg" class="rounded-circle"/> 
+			 <img *ngIf="!mapService.isDisplaySatelliteBaseMap" src="assets/satellite.svg" class="rounded-circle"/> 
 			</ion-fab-button>
 </ion-fab>
                  
@@ -104,23 +104,23 @@
 <!--Tap button to add new POI-->
 		<ion-fab 	
 		*ngIf="!mapService.markerMoving && !mapService.markerMoveMoving" >
-			<ion-button  tappable ion-fab fab-bottom color="primary"  shape="round"
+			<button  mat-raised-button color="primary" 
 			(click)="mapService.positionateMarker()" [disabled]="mapService.loadingData">
-				<ion-icon name="add"></ion-icon>
+				<mat-icon>add</mat-icon>
                 <span style="text-transform: initial; padding-left: 2px">Tap<span  style="text-transform: lowercase;"> to add new
                         <span  style="text-transform: uppercase;"> POI</span>
                     </span>
                 </span>
-        </ion-button>
+        </button>
 		</ion-fab>
 
         <!--GPS button-->
 		<ion-fab  right *ngIf="!mapService.markerMoving && !mapService.markerMoveMoving"
-			style="right: 0; bottom: 0; margin:6px; margin-bottom:66px;">
+			style="right: 0; bottom: 85px; margin:6px; margin-bottom: 30px;">
 			<ion-fab-button color="light" tappable ion-fab fab-bottom 
 			(click)="mapService.centerOnMyPosition()" [disabled]="!locationService.gpsIsReady">
-				<ion-icon *ngIf="!locationService.gpsIsReady" name="locate"></ion-icon>
-				<ion-icon *ngIf="locationService.gpsIsReady"  name="compass-outline"></ion-icon>
+				<mat-icon *ngIf="!locationService.gpsIsReady">gps_off</mat-icon>
+				<mat-icon *ngIf="locationService.gpsIsReady">gps_fixed</mat-icon>
 			</ion-fab-button>
 		</ion-fab>
   <!--      
@@ -156,8 +156,12 @@
 				<ion-icon name="close"></ion-icon>
 			</ion-fab-button>
 		</ion-fab>
+		
+	
+		
 
 	</div>
+	
 </ion-content>
 
 <menu-component [menuIsOpen]="menuIsOpen" 

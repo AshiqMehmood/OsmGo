@@ -20,6 +20,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatSelectModule} from '@angular/material/select'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips'; 
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet'; 
 
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -159,6 +160,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatSelectModule,
     ReactiveFormsModule,
     MatChipsModule,
+    MatBottomSheetModule,
 
     TranslateModule.forRoot({
       loader: {

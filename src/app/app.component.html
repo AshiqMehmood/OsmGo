@@ -1,4 +1,15 @@
 <ion-app>
 
   <ion-router-outlet></ion-router-outlet>
+
+  <ion-fab style="bottom: 0; width:100%;"
+  *ngIf="dataService.geojsonChanged && dataService.geojsonChanged.features.length > 0 && !mapService.markerMoving"
+  >
+    <ion-item  color="primary" style="align-items: flex-end; bottom:0; width:100%;" button  detail=false>
+      <mat-icon style="margin:6px;">publish</mat-icon>
+      <ion-label style="padding-left: 15px;">
+        Tap to upload 4 newly added POI
+      </ion-label>
+    </ion-item>
+  </ion-fab>
 </ion-app>

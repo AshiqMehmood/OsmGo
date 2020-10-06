@@ -7,6 +7,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { TagsService } from './services/tags.service';
 import { StatesService } from './services/states.service';
 import { Plugins } from '@capacitor/core';
+
+import { MapService } from './services/map.service';
+import { DataService } from './services/data.service';
+
 const { Device, SplashScreen } = Plugins;
 
 @Component({
@@ -19,7 +23,9 @@ export class AppComponent {
     public configService: ConfigService,
     private translate: TranslateService,
     public tagService: TagsService,
-    public statesService: StatesService
+    public statesService: StatesService,
+    public mapService: MapService,
+    public dataService: DataService,
 
   ) {
     this.initializeApp();

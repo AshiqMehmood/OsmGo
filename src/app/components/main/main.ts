@@ -3,7 +3,7 @@ import {
   NavController, MenuController,
   ModalController, ToastController, Platform, AlertController, LoadingController
 } from '@ionic/angular';
-
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 import { OsmApiService } from '../../services/osmApi.service';
 import { TagsService } from '../../services/tags.service';
@@ -40,6 +40,7 @@ export class MainPage implements AfterViewInit {
   newVersion = false;
   loadingData = false
   loading = true;
+  dataAlert = "";
 
   // authType = this.platform.platforms().includes('hybrid') ? 'basic' : 'oauth'
 
@@ -62,7 +63,8 @@ export class MainPage implements AfterViewInit {
     public loadingController: LoadingController,
     private swUpdate: SwUpdate,
     public statesService: StatesService,
-    public initService: InitService
+    public initService: InitService,
+    private _bottomSheet: MatBottomSheet
 
   ) {
 
@@ -153,6 +155,10 @@ export class MainPage implements AfterViewInit {
     this.swUpdate.available.subscribe(event => {
       this.newVersion = true;
     });
+  }
+
+  openBottomSheet(): void {
+    //this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
 
   openMenu() {
@@ -281,6 +287,7 @@ export class MainPage implements AfterViewInit {
         this.mapService.initMap(config)
     })
 
+    //alert snackbar
     this.mapService.eventMapIsLoaded.subscribe( e => {
         this.loading = false;
         timer(2000).subscribe( e => {
@@ -294,6 +301,7 @@ export class MainPage implements AfterViewInit {
           }
         })
     })
+
 
 
     this.alertService.eventDisplayToolTipRefreshData.subscribe(async e => {
