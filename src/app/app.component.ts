@@ -1,7 +1,7 @@
 import { ConfigService } from './services/config.service';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 
 import { TranslateService } from '@ngx-translate/core';
 import { TagsService } from './services/tags.service';
@@ -18,6 +18,7 @@ const { Device, SplashScreen } = Plugins;
   templateUrl: './app.component.html'
 })
 export class AppComponent {
+ 
   constructor(
     private platform: Platform,
     public configService: ConfigService,
@@ -26,6 +27,7 @@ export class AppComponent {
     public statesService: StatesService,
     public mapService: MapService,
     public dataService: DataService,
+    public navCtrl: NavController, 
 
   ) {
     this.initializeApp();
@@ -34,6 +36,7 @@ export class AppComponent {
 
   ngAfterViewInit(): void {
     SplashScreen.hide();
+    
   }
 
   async initializeApp() {
@@ -43,7 +46,10 @@ export class AppComponent {
 
     await this.configService.loadAppVersion();
 
+   
+
   }
+
 
 
 }

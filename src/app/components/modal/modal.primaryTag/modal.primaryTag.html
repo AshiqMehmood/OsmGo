@@ -1,6 +1,6 @@
 <div *ngIf="!loading" style="height:100%; background-color: white;">
   <div>
-    <div id="searchSelect">
+   <!-- <div id="searchSelect">
       <div id="searchDiv">
         <ion-searchbar
         autocomplete='off' autocorrect='off' autocapitalize='none' 
@@ -10,9 +10,53 @@
         ></ion-searchbar>
       </div>
     </div>
-  {{geometriesFilter}}
-    <div class="listTag" *ngIf="searchText.length > 2 ">
+    -->
+    
+     
+                    <form class="example-form">
+                        <mat-form-field class="example-full-width">
+                          <input matInput
+                                 placeholder="Select Type*"
+                                 aria-label="State"
+                                 [matAutocomplete]="auto"
+                                 [(ngModel)]="searchText"
+                                 [formControl]="stateCtrl"
+                          >
+                        <mat-icon matSuffix>search</mat-icon>
+                          <mat-autocomplete #auto="matAutocomplete">                           
+                            <mat-option *ngFor="let tag of currentListOfTags
+                            | filtersTagsByIds:tagsService.hiddenTagsIds:true
+                            | filterDeprecatedTag 
+                            | filterBySearchable 
+                            | filterExcludeTagByCountryCode:countryTags 
+                            | filterByByGeometryType:[geometryType]
+                            | filterByTagsContent:[configService.config.languageTags, configService.config.countryTags]:searchText
+                            | limitDisplayTags:50;" 
 
+                            [value]="tag"
+                            >
+                            <app-tag-list-element   style="width: 100%;"
+                            [tag]="tag"
+                            [countryTags]="configService.config.countryTags"
+                            [languageTags]="configService.config.languageTags"
+                            [jsonSprites]="tagsService.jsonSprites"
+                            [geometriesFilter]="geometriesPossible"
+                            [bookmarksIds]="tagsService.bookmarksIds"
+                            [oldTagConfig]="oldTagConfig"
+                            (removeBookmark)="tagsService.removeBookMark(tag)"
+                            (addBookmark)= "tagsService.addBookMark(tag)"
+                            (selected)="selected($event)"
+                            >
+                            </app-tag-list-element>
+                                                  
+                            </mat-option>
+                          </mat-autocomplete>
+                          
+                        </mat-form-field>
+                    </form>    
+  
+  <div class="listTag" *ngIf="searchText.length > 2 ">
+<!-- 
       <ion-list style="overflow-y: auto;">
         <ion-item *ngFor="let tag of currentListOfTags
         | filtersTagsByIds:tagsService.hiddenTagsIds:true
@@ -39,7 +83,7 @@
          </app-tag-list-element>
        </ion-item> 
      </ion-list>
-
+--> 
 
       <!-- Add custum value (from searchBar to the key) -->
       <div>

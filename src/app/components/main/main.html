@@ -38,9 +38,9 @@
   </button>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with upload icon"
      (click)="navCtrl.navigateForward('/pushData')"
-     *ngIf="dataService.geojsonChanged && dataService.geojsonChanged.features.length > 0 && !mapService.markerMoving"
+     *ngIf="!mapService.markerMoving"
     >
-    <mat-icon [style.color]="'#0099ff'" >cloud_upload</mat-icon>
+    <mat-icon [style.color]="'#f4f1f4'">cloud_upload</mat-icon>
    </button>
  </mat-toolbar>
 
@@ -161,6 +161,18 @@
 		
 
 	</div>
+
+	<ion-fab style="bottom:0; left:0; width:100%;"
+		*ngIf="dataService.geojsonChanged && dataService.geojsonChanged.features.length > 0 && !mapService.markerMoving"
+		(click)="pushPage('/pushData')"
+		>
+		  <ion-item  color="primary" style="align-items: flex-end; bottom:0; width:100%;" button  detail=false>
+			<mat-icon style="margin:6px;">publish</mat-icon>
+			<ion-label style="padding-left: 15px;">
+			  Tap to upload newly added POI
+			</ion-label>
+		  </ion-item>
+	</ion-fab>
 	
 </ion-content>
 

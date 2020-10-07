@@ -208,7 +208,7 @@ export class MainPage implements AfterViewInit {
 
 
 
-  //-------------------------------------------------------------------------
+  //testing function-------------------------------------------------------------------------
 
   pushPage(path) { //  (click) = mapService.openModalOsm
     this.navCtrl.navigateForward(path)
