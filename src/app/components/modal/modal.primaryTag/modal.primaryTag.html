@@ -1,5 +1,22 @@
 <div *ngIf="!loading" style="height:100%; background-color: white;">
-  <div>
+    <mat-toolbar [style.backgroundColor]="'#ffffff'">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+         (click) = "cancel()"
+        >
+         <mat-icon color="warn">close</mat-icon>
+       </button>
+      
+       
+       <span  style="padding-right:10px;"><small style="letter-spacing: 2px;">Add details</small></span>
+      
+       <span class="example-spacer"></span>
+     
+ 
+     </mat-toolbar>
+    
+  
+  
+    <div>
    <!-- <div id="searchSelect">
       <div id="searchDiv">
         <ion-searchbar
@@ -33,7 +50,7 @@
                             | filterByTagsContent:[configService.config.languageTags, configService.config.countryTags]:searchText
                             | limitDisplayTags:50;" 
 
-                            [value]="tag"
+                            [value]="tag.lbl"
                             >
                             <app-tag-list-element   style="width: 100%;"
                             [tag]="tag"
@@ -101,10 +118,10 @@
       (swipeleft)="swipeLeft()" 
       (swiperight)="swipeRight()"
     >
-      <h4 style="text-align: center;">
+     <!-- <h4 style="text-align: center;">
         {{ 'MODAL_SELECTED_ITEM.SEARCH_TAG_AT_LEAST_3_LETTERS' | translate}}
       </h4>
-
+-->
       <div class="buttonsSwitchType">
           <ion-button ion-button  (click)="changePageLastTagsBookmarks('lastTags')" class="buttonSwitchType" color="light"  [disabled]="displayType === 'lastTags'">
             <ion-icon name="time"></ion-icon> {{'MODAL_SELECTED_ITEM.LAST_TAG_USED' | translate}} 
@@ -175,12 +192,13 @@
 
   </div>
 
+  <!--
   <ion-footer id="footer">
     <ion-button ion-button color="danger" (click)="cancel()">
       {{ 'SHARED.CANCEL' | translate}}
     </ion-button>
   </ion-footer>
-
+-->
   <div *ngIf="loading" style="height:100%">
     <!-- <ion-header>
       <ion-toolbar> -->
