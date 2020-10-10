@@ -26,6 +26,7 @@ export class ModalPrimaryTag implements OnInit {
     loading = true;
     allTags: TagConfig[];
     searchText = '';
+    advancedTex = '';
     currentListOfTags: TagConfig[] = [];
     typeFiche = 'list';
     customValue = '';

@@ -561,5 +561,9 @@ export class ModalsContentPage implements OnInit {
     this.cdr.detectChanges();
   }
 
+  goBackToSelectTag(){
+    this.openPrimaryTagModal()
+  }
+
 
 }

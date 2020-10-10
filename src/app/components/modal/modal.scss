@@ -62,4 +62,25 @@
         position: relative;
     }
 
+    .example-full-width {
+        width: 100%;
+       margin: 2px;
+       padding: 2px;
+          }    
+.example-spacer{
+    flex: 1 1 auto;
+}
+
+.app-class {
+    margin-top: 10px;
+    padding-top: 6px;
+    height: auto;
+    width:100%;
+}
+.mat-list-item{
+    margin-top: 2px;
+    padding-top: 2px;
+}
+
+
 

@@ -51,16 +51,25 @@
 
     .example-form {
         width: 100%;
-        margin: 15px;
-        padding: 10px;
+        margin: 5px;
+        padding: 5px;
 
       }
       .example-full-width {
-        width: 80%;
-       margin: 8px;
+        width: 100%;
+       margin: 2px;
        padding: 2px;
           }    
 .example-spacer{
     flex: 1 1 auto;
 }
 
+.app-class {
+    margin-top: 1px;
+    padding-top: 1px;
+    height: auto;
+}
+.mat-list-item{
+    margin-top: 4px;
+    padding-top: 4px;
+}

@@ -105,8 +105,8 @@
 
 
 	<!-- ------------------------- *ngSwitchCase="'EDIT'"------------------------------------ -->
-	<div *ngSwitchCase="'Edit'" style="height:100%">
-
+	<div *ngSwitchCase="'Edit'" style="height:100%;">
+		<!--
 		<ion-header>
 			<ion-toolbar>
 				<ion-title>
@@ -120,9 +120,23 @@
 			</ion-toolbar>
 
 		</ion-header>
-
+		-->
+		<mat-toolbar [style.backgroundColor]="'#ffffff'">
+			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+			 (click) = "goBackToSelectTag()"
+			>
+			 <mat-icon>keyboard_backspace</mat-icon>
+		   </button>
+		  
+		   
+		   <span  style="padding-right:10px;"><small style="letter-spacing: 2px;">Edit Features</small></span>
+		  
+		   <span class="example-spacer"></span>
+		 
+	 
+		 </mat-toolbar>
 		<div class="content">
-
+			<!--
 			<div class="actions"> 
 				<ion-fab  horizontal="end" >
 						<ion-fab-button  size="small" (click)="toogleCode()">
@@ -155,7 +169,11 @@
 				</ion-fab>
 
 			</div>
+		 -->
+		
 
+		 <mat-list class="app-class">
+		
 			<read-meta *ngIf="feature.properties.meta" 
 				[feature]="feature"
 				[displayCode]="displayCode"
@@ -184,7 +202,8 @@
 
 			
 			<!--Les presets-->
-			<div *ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets">
+			<div style="margin:3px; padding:1px;"
+			*ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets">
 				<edit-presets *ngIf="tag.preset" 
 					[displayCode]="displayCode" 
 					[tag]="tag"
@@ -195,16 +214,32 @@
 				</edit-presets>
 			</div>
 
-			<!--Le reste des tags-->
+			<!--Le reste des tags
 		
-			<div *ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets:true">
+			<div
+			*ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets:true">
 				<edit-other-tag [tag]="tag" (deleteTag)="deleteTag($event)"> </edit-other-tag>
-			</div>
+		  </div>
+		-->
 
-			<!--Nouveaux tag-->
+		  <mat-list-item *ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets:true">
+			<mat-chip-list #chipList>
+				<edit-other-tag [tag]="tag" (deleteTag)="deleteTag($event)"> </edit-other-tag>
+			</mat-chip-list>
+
+		  </mat-list-item>
+
+			<!--Nouveaux tag
 			<ion-fab-button tappable color="secondary" *ngIf="!displayAddTag" (click)="displayAddTag = true" style="margin:5px;">
 				<ion-icon name="add"> </ion-icon>
 			</ion-fab-button>
+			-->
+			<mat-list-item>
+                <button  *ngIf="!displayAddTag" (click)="displayAddTag = true"  mat-raised-button color="warn">
+					<mat-icon matSuffix>add</mat-icon>
+					<span style="text-transform: initial;">Add A Tag</span>
+                </button>
+			  </mat-list-item>		
 
 			<ion-card *ngIf="displayAddTag">
 				<ion-card-header *ngIf="displayAddTag">
@@ -229,8 +264,10 @@
 				</ion-card-content>
 			</ion-card>
 
-		</div>
+			
 
+		  </mat-list>
+		</div>
 		<ion-footer>
 			<ion-fab-button tappable (click)="dismiss()" class="fabInlineMarginLess">
 				<ion-icon name="close"> </ion-icon>
@@ -264,6 +301,8 @@
 			</ion-fab-button>
 
 		</ion-footer>
+
+	
 
 	</div>
 	<!--EOF *ngSwitchCase="'Update'"-->

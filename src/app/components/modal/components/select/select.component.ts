@@ -14,7 +14,8 @@ export class SelectComponent implements OnInit {
   
   @Output() addTags = new EventEmitter();
 
- 
+ clear: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
@@ -32,4 +33,5 @@ export class SelectComponent implements OnInit {
     }
   }
 
+ 
 }

@@ -1,4 +1,4 @@
-<ion-card *ngIf="tag.preset?.type === 'select'">
+<!--<ion-card *ngIf="tag.preset?.type === 'select'">
   <ion-card-header>
       <b *ngIf="!displayCode && (tag.preset?.lbl[language] || tag.preset?.lbl['en']); else diplayCodeSelect">{{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}</b>
       <ng-template #diplayCodeSelect>
@@ -49,3 +49,25 @@
 
   </ion-card-content>
 </ion-card>
+-->
+
+
+<mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>
+        <b *ngIf="!displayCode && (tag.preset?.lbl[language] || tag.preset?.lbl['en'])">{{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}</b>    
+
+    </mat-label>
+<mat-select [value]="tag.value" (selectionChange)="selectChange($event)">
+
+        <mat-option  *ngFor ="let item of tag.preset.options;" [value]="item.v" >
+                <p class="displayLabelListValue">  {{item.lbl[language] || item.lbl['en']}}</p> 
+        </mat-option>
+
+
+        <mat-option  *ngIf="(tag | displayPresetLabel) === undefined &&  tag.value!= '' ;" [value]="tag.value" >
+            {{'<> '}} 
+               <p class="displayLabelListValue"> {{(tag.value)}} {{(tag | displayPresetLabel)}}</p> 
+        </mat-option>
+</mat-select>
+
+</mat-form-field>

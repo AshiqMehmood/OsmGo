@@ -1,3 +1,4 @@
+
 <app-select *ngIf="tag.preset?.type === 'select'"
     [tag]="tag"
     [language]="language"
@@ -7,6 +8,7 @@
 
 </app-select>
 
+<!--
 <ion-card *ngIf="tag.preset?.type === 'list'">
     <ion-card-header  (click)="emitOpenModal(tag)">
         <b *ngIf="!displayCode">{{ tag.preset?.lbl[language] || tag.preset?.lbl['en']  }} 
@@ -40,9 +42,18 @@
     </ion-card-content>
 </ion-card>
 
+<mat-form-field appearance="fill">
+    <mat-label >
+        <b *ngIf="!displayCode">{{ tag.preset?.lbl[language] || tag.preset?.lbl['en']  }}
+    </mat-label>
 
+    <input matInput placeholder="Placeholder">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+-->
 
-<ion-card *ngIf="tag.preset?.type === 'number'">
+<!--<ion-card *ngIf="tag.preset?.type === 'number'">
     <ion-card-header>
         <b *ngIf="!displayCode">{{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}</b>
         <b *ngIf="displayCode"> <ion-icon name="code"></ion-icon> {{tag.preset?.key}}</b>
@@ -64,9 +75,19 @@
     </div>
     </ion-card-content>
 </ion-card>
+-->
 
+<mat-form-field appearance="fill"  *ngIf="tag.preset?.type === 'number'" class="example-full-width">
+    <mat-label>
+        <b *ngIf="!displayCode">{{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}</b>
+    </mat-label>
+    <input type="number" matInput placeholder="" [(ngModel)]="tag.value">
+    <button mat-button *ngIf="tag.value" matSuffix mat-icon-button aria-label="Clear" (click)="tag.value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+</mat-form-field>
 
-
+<!--
 <ion-card *ngIf="tag.preset?.type === 'text'">
     <ion-card-header>
         <b *ngIf="!displayCode">{{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}</b>
@@ -87,3 +108,13 @@
     </div>
     </ion-card-content>
 </ion-card>
+-->
+<mat-form-field appearance="fill" *ngIf="tag.preset?.type === 'text'" class="example-full-width">
+    <mat-label>
+        <b *ngIf="!displayCode">{{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}</b>
+    </mat-label>
+    <input type="text" matInput placeholder="" [(ngModel)]="tag.value">
+    <button mat-button *ngIf="tag.value" matSuffix mat-icon-button aria-label="Clear" (click)="tag.value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+</mat-form-field>
