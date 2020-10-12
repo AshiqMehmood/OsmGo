@@ -1,5 +1,5 @@
-<ion-header color="primary">
-  <ion-toolbar color="primary">
+<ion-header>
+  <ion-toolbar color="light">
         <ion-buttons style="min-width: 32px;" (click)="navCtrl.back()" slot="primary"> 
                 <ion-icon name="arrow-back"></ion-icon> 
              </ion-buttons>
@@ -12,7 +12,10 @@
 
 
 <ion-content class="ion-padding" >
-  <ion-card class="ion-padding" > 
+
+  
+
+  <ion-card class="ion-padding" style="border-color: gray;"> 
         <ion-item>
                 <ion-input [(ngModel)]="username" [disabled]="loading"
                 [placeholder]="'LOGIN.USERNAME_PLACEHOLDER' | translate " ></ion-input>
@@ -43,13 +46,13 @@
 
       
      
-
-        <ion-card *ngIf="errorLogin" color="danger" >
+<!--
+        <ion-card *ngIf="errorLogin" color="danger" style="text-align: center">
             <ion-card-content>
-                {{errorLogin.error}} 
+               Login Failed
             </ion-card-content>
         </ion-card>
-   
+   -->
    
         
         <ion-button  [disabled]="loading"
@@ -58,13 +61,12 @@
 
       </ion-card>
 
-        <ion-button color="light"  [disabled]="loading"  *ngIf="!isAndroid"  style="margin-top: 60px; width: 100%; text-align: center; cursor: pointer;" (click)="oauthLogin()">
-          <ion-icon name="log-in"></ion-icon>  
-          {{ 'LOGIN.LOGIN_OAUTH' | translate }} 
+<h3 style="text-align: center;font-weight: bold; margin:4px;margin-top: 20px;">OR</h3>
 
-        </ion-button>
-
-
+      <ion-button color="tertiary"  [disabled]="loading"  *ngIf="!isAndroid"  style="margin-top: 25px; width: 100%; text-align: center; cursor: pointer;" (click)="oauthLogin()">
+        <ion-icon name="log-in"></ion-icon>  
+       <span style="text-transform: initial; padding: 2px;">Sign In with OpenStreetMap</span> 
+      </ion-button>
 
 </ion-content>
 
