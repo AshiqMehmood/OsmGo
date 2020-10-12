@@ -21,6 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips'; 
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet'; 
+import {MatTooltipModule} from '@angular/material/tooltip'; 
 
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -41,6 +42,7 @@ import { AddPointsComponent } from "./components/add-points/add-points.component
 import {CommontagsComponent } from "./components/add-points/commontags/commontags.component"
 import {AlltagsComponent } from "./components/add-points/alltags/alltags.component"
 import { LandingPageComponent } from "./components/landing-page/landing-page.component"
+import {BottomSheetOverviewExampleSheet} from "./components/main/main"
 
 import { ModalsContentPage } from './components/modal/modal';
 import { ModalPrimaryTag } from './components/modal/modal.primaryTag/modal.primaryTag';
@@ -127,10 +129,11 @@ export function createTranslateLoader(http: HttpClient) {
     AddPointsComponent,
     CommontagsComponent,
     AlltagsComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    BottomSheetOverviewExampleSheet
    
   ],
-  entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent],
+  entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent, BottomSheetOverviewExampleSheet ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -161,6 +164,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     MatChipsModule,
     MatBottomSheetModule,
+    MatTooltipModule,
 
     TranslateModule.forRoot({
       loader: {

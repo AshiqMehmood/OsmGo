@@ -29,11 +29,11 @@
         </div>
         -->
     <mat-tab-group mat-align-tabs="center">
-      <mat-tab label="Basic" [backgroundColor]="primary">
+      <mat-tab label="Basic" [backgroundColor]="primary" style="height:auto;">
         <mat-list class="app-class">
-          <div mat-subheader style="color: #0000CD; margin-top:2px;">Select Tags</div>
+          <div mat-subheader style="color: #0000CD; margin-top:2px;">Select Tag</div>
             
-              <mat-list-item class="mat-list-item mb-3 pb-2">
+              <mat-list-item class="mat-list-item-select">
         
               <mat-icon mat-list-icon>streetview</mat-icon>   
                         <form class="example-form">
@@ -78,9 +78,13 @@
                             </mat-form-field>
                         </form>    
                    </mat-list-item>
-                   
-                   <div mat-subheader style="color: #0000CD;margin-top:4px; padding-top:4px;">Last Used Tags</div>                                   
-                   <mat-list-item class="mat-list-item mt-2 p-1"
+                  <mat-list-item></mat-list-item>
+                   <div mat-subheader style="color: #0000CD;margin-top:6px; padding-top:4px;">Last Used Tags</div>                                   
+                  
+                   <mat-list-item *ngIf="tagsService.tags.length === 0">
+                    <p style="color: gray">No Previous Tags available</p>
+                   </mat-list-item>
+                   <mat-list-item class="mat-list-item-last"
                      *ngFor="let tag of tagsService.tags
                         | filtersTagsByIds:tagsService.lastTagsUsedIds 
                         | filterDeprecatedTag 
@@ -109,7 +113,7 @@
 
       </mat-tab>
 
-      <mat-tab label="Advanced">
+      <mat-tab label="Advanced" style="height:auto;">
         <mat-list class="app-class">
           <div mat-subheader style="color: #0000CD; margin-top:2px;">Add Custom Tag</div>
             

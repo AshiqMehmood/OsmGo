@@ -78,8 +78,8 @@
 -->
 
 <mat-form-field appearance="fill"  *ngIf="tag.preset?.type === 'number'" class="example-full-width">
-    <mat-label>
-        <b *ngIf="!displayCode">{{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}</b>
+    <mat-label *ngIf="!displayCode">
+         {{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}
     </mat-label>
     <input type="number" matInput placeholder="" [(ngModel)]="tag.value">
     <button mat-button *ngIf="tag.value" matSuffix mat-icon-button aria-label="Clear" (click)="tag.value=''">
@@ -110,8 +110,8 @@
 </ion-card>
 -->
 <mat-form-field appearance="fill" *ngIf="tag.preset?.type === 'text'" class="example-full-width">
-    <mat-label>
-        <b *ngIf="!displayCode">{{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}</b>
+    <mat-label *ngIf="!displayCode">
+        {{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}
     </mat-label>
     <input type="text" matInput placeholder="" [(ngModel)]="tag.value">
     <button mat-button *ngIf="tag.value" matSuffix mat-icon-button aria-label="Clear" (click)="tag.value=''">

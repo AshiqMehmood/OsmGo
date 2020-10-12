@@ -53,8 +53,8 @@
 
 
 <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>
-        <b *ngIf="!displayCode && (tag.preset?.lbl[language] || tag.preset?.lbl['en'])">{{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}</b>    
+    <mat-label  *ngIf="!displayCode && (tag.preset?.lbl[language] || tag.preset?.lbl['en'])">
+       {{tag.preset?.lbl[language] || tag.preset?.lbl['en']}}  
 
     </mat-label>
 <mat-select [value]="tag.value" (selectionChange)="selectChange($event)">

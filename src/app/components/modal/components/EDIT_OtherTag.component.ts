@@ -11,17 +11,14 @@ export interface TagList {
     selector: 'edit-other-tag',
     styleUrls: ['./style.scss'],
     template: `
-		  
-				  <mat-chip
-				  
-				  [selectable]="selectable"
-				  [removable]="removable" (removed)="remove(tag)">
+	<mat-chip-list>
+				  <mat-chip style="font-size: 1.1em;">
 					
-				 		 {{tag.key}}={{tag.value}}
+				 		{{tag.key}}={{tag.value}}
 					
-                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    <mat-icon matChipRemove (click)="eventDeleteTag()" *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
-                 
+	  </mat-chip-list>          
        
   `
 })
@@ -30,37 +27,13 @@ export class EditOtherTag {
     @Output() deleteTag = new EventEmitter();
 	removable = true;
 	selectable = true;
-	visible =true;
-	tagList: TagList[] =[
-		
-	]
-		
-	ngOnInit(): void{
-		this.add(this.tag);
-	}
-
+	
+	
     eventDeleteTag() {
         this.deleteTag.emit(this.tag);
 	}
 	
-	add(tags): void {
-		const key= tags.key
-		const value = tags.value
-		// Add our fruit
-		if ((value || '').trim()) {
-		  this.tagList.push({name: value.trim()});
-		}
 	
-	
-	  }
-	
-	  remove(tags: TagList): void {
-		const index = this.tagList.indexOf(tags);
-	
-		if (index >= 0) {
-		  this.tagList.splice(index, 1);
-		}
-	  }
 	
 
 }

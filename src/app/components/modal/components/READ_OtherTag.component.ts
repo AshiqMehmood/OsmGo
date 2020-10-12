@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 					<b>{{tag.key}}</b>
 				</ion-card-header>
 				<ion-card-content>
-				<p><ion-icon name="code"></ion-icon>
+				<p>
 				{{tag.value}}</p>
 				</ion-card-content>
 			</ion-card>
@@ -17,3 +17,6 @@ import { Component, Input } from '@angular/core';
 export class ReadOtherTag {
     @Input() tag;
 }
+
+
+//<ion-icon name="code"></ion-icon>

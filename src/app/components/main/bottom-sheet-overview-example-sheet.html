@@ -1,0 +1,61 @@
+<div style="height:auto; margin:2px;" >
+<h3 style="font-weight: bold;margin:2px; padding:2px; color:#3c3c3c;">You have <span style="color:#0000CD;">{{summary.Total}}</span> new changes to upload</h3>
+  
+
+<ul role="list" style="font-weight: bold; width:100%">
+    <li style="width:100%; color:#615f5f; margin-top:2px;">
+        Created:  {{summary.Create}} 
+    </li>
+    <li  style="width:100%; color:#615f5f; margin-top:2px;">Updated:  {{summary.Update}} </li>
+    <li   style="width:100%; color:#615f5f; margin-top:2px;">Deleted:  {{summary.Delete}} </li>
+
+ <mat-form-field
+ *ngIf="this.configService.user_info.connected"
+  appearance="outline"
+  style="width:100%; margin-top:4px; padding-top:2px;">
+        <mat-label>Changeset Comment</mat-label>
+        <mat-icon matSuffix>chat</mat-icon>
+        <input 
+        matInput
+        [(ngModel)]="commentChangeset"
+        type="text"
+       
+        />
+        <mat-hint>Ex: #MapathonKeralam</mat-hint>
+</mat-form-field>
+</ul>
+
+
+
+<div class="d-flex mt-4">
+    <button style="width:50%"
+    mat-raised-button 
+    (click)="presentConfirm($event)" 
+        color="warn"
+        [disabled]="isPushing"
+    >
+        Delete 
+    </button>
+    <button style="width:50%"
+    *ngIf="!this.configService.user_info.connected"
+          mat-raised-button 
+        (click)="openLink($event)" 
+        color="primary"
+        
+    >
+        Login to upload
+    </button>
+    <button style="width:50%"
+    *ngIf="this.configService.user_info.connected"
+         mat-raised-button 
+        (click)="pushDataToOsm(commentChangeset, this.basicPassword)" 
+        color="primary"
+        [disabled]="!configService.user_info.connected || !featuresChanges || featuresChanges.length === 0 || isPushing"
+    >
+        Upload
+    </button>
+
+
+</div>
+
+</div>

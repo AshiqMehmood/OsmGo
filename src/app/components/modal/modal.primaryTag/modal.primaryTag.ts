@@ -51,6 +51,7 @@ export class ModalPrimaryTag implements OnInit {
 
     ) {
         this.oldTagConfig = this.params.data.tagConfig
+        //this.tagsService.tags = []
     }
 
     ngOnInit() {
@@ -68,7 +69,7 @@ export class ModalPrimaryTag implements OnInit {
     summit(data) {
         this.dismiss(data);
     }
-    cancel(page) {
+    cancel() {
         this.dismiss();
         
     }
