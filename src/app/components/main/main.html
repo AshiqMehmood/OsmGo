@@ -24,9 +24,10 @@
    <span class="example-spacer"></span>
   <button *ngIf="this.configService.user_info.connected && !mapService.markerMoving"
   mat-icon-button class="example-icon" aria-label="Example icon-button with upload icon"
-     (click)="osmApi.logout()" 
+     (click)="openDialog()" 
     >
-    <mat-icon [style.color]="'#3880ff'">account_circle</mat-icon>
+	
+	<mat-icon [style.color]="'#3880ff'">account_circle</mat-icon>
    
 </button>
 <button *ngIf="!this.configService.user_info.connected && !mapService.markerMoving" 

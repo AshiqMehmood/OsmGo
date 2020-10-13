@@ -22,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips'; 
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet'; 
 import {MatTooltipModule} from '@angular/material/tooltip'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatBadgeModule} from '@angular/material/badge'; 
 
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -43,6 +45,7 @@ import {CommontagsComponent } from "./components/add-points/commontags/commontag
 import {AlltagsComponent } from "./components/add-points/alltags/alltags.component"
 import { LandingPageComponent } from "./components/landing-page/landing-page.component"
 import {BottomSheetOverviewExampleSheet} from "./components/main/main"
+import {DialogContentExampleDialog} from "./components/main/main"
 
 import { ModalsContentPage } from './components/modal/modal';
 import { ModalPrimaryTag } from './components/modal/modal.primaryTag/modal.primaryTag';
@@ -103,6 +106,7 @@ import { SelectComponent } from './components/modal/components/select/select.com
 import { SortArrayPipe } from './pipes/sort-array.pipe';
 import { LimitDisplayTagsPipe } from './pipes/limit-display-tags.pipe';
 
+import {FilterByIndexPipe} from './pipes/filter-by-index.pipe'
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -117,7 +121,7 @@ export function createTranslateLoader(http: HttpClient) {
     IconComponent, SelectComponent,
 
     DisplayPresetLabelPipe,
- 
+    FilterByIndexPipe,
     FilterByTagsContentPipe,
     FilterExcludeTagByCountryCode,
     FilterByCountryCode,
@@ -130,10 +134,11 @@ export function createTranslateLoader(http: HttpClient) {
     CommontagsComponent,
     AlltagsComponent,
     LandingPageComponent,
-    BottomSheetOverviewExampleSheet
-   
+    BottomSheetOverviewExampleSheet,
+    DialogContentExampleDialog
+  
   ],
-  entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent, BottomSheetOverviewExampleSheet ],
+  entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent, BottomSheetOverviewExampleSheet,DialogContentExampleDialog ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -165,6 +170,8 @@ export function createTranslateLoader(http: HttpClient) {
     MatChipsModule,
     MatBottomSheetModule,
     MatTooltipModule,
+    MatDialogModule,
+    MatBadgeModule,
 
     TranslateModule.forRoot({
       loader: {

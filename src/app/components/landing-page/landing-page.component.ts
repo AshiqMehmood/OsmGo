@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController} from '@ionic/angular'
-
+import { ConfigService } from 'src/app/services/config.service';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -9,7 +9,9 @@ import { NavController} from '@ionic/angular'
 export class LandingPageComponent implements OnInit {
   
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController,
+              public configService: ConfigService
+    ) { }
 
 
   ngOnInit() {}

@@ -87,10 +87,11 @@
                    <mat-list-item class="mat-list-item-last"
                      *ngFor="let tag of tagsService.tags
                         | filtersTagsByIds:tagsService.lastTagsUsedIds 
-                        | filterDeprecatedTag 
+                        | filterDeprecatedTag                       
                         | filterBySearchable 
                         | filterExcludeTagByCountryCode:countryTags 
-                        | filterByByGeometryType:[geometryType]"  
+                        | filterByByGeometryType:[geometryType]     
+                       "  
                         class="ion-no-padding">
                       <app-tag-list-element  style="width: 100%;"
                         [tag]="tag"

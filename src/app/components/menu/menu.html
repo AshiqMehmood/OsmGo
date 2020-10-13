@@ -52,10 +52,12 @@
 				<ion-item *ngIf="configService.platforms.includes('hybrid')" (click)="exit()">
 					<ion-icon name="exit"></ion-icon> {{'MENU.EXIT' | translate }}
                 </ion-item>
-                
+				
+				<!--
                 <ion-item color="light" *ngIf="this.configService.user_info.connected" (click)="logout()">
 					<ion-icon name="log-out"></ion-icon> {{'MENU.SIGN_OUT' | translate }}
 				</ion-item>
+				-->
 
 			</ion-list>
 		</ion-content>

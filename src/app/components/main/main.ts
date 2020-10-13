@@ -30,6 +30,9 @@ import { InitService } from 'src/app/services/init.service';
 import { cloneDeep, clone } from 'lodash';
 import { addAttributesToFeature } from '../../../../scripts/osmToOsmgo/index.js'
 
+//dialog
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 const { App } = Plugins;
 
@@ -69,8 +72,8 @@ export class MainPage implements AfterViewInit {
     private swUpdate: SwUpdate,
     public statesService: StatesService,
     public initService: InitService,
-    private _bottomSheet: MatBottomSheet
-
+    private _bottomSheet: MatBottomSheet,
+    public dialog: MatDialog
   ) {
 
 
@@ -159,6 +162,13 @@ export class MainPage implements AfterViewInit {
 
     this.swUpdate.available.subscribe(event => {
       this.newVersion = true;
+    });
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -745,4 +755,17 @@ ngAfterViewInit() {
     this.summary = this.getSummary();
 }
 
+}
+
+//Dialog class
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: 'dialog-content-example-dialog.html',
+})
+
+export class DialogContentExampleDialog {
+
+  constructor( public osmApi: OsmApiService){
+
+  }
 }
