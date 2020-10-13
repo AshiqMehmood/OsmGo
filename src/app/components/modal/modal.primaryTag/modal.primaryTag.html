@@ -84,7 +84,11 @@
                    <mat-list-item *ngIf="tagsService.tags.length === 0">
                     <p style="color: gray">No Previous Tags available</p>
                    </mat-list-item>
-                   <mat-list-item class="mat-list-item-last"
+                   
+                   <div  *ngIf="!searchText">
+                   <mat-list-item 
+                 
+                     class="mat-list-item-last"
                      *ngFor="let tag of tagsService.tags
                         | filtersTagsByIds:tagsService.lastTagsUsedIds 
                         | filterDeprecatedTag                       
@@ -108,7 +112,7 @@
                         </app-tag-list-element>
                         <mat-divider></mat-divider>
                     </mat-list-item> 
-              
+                  </div>
     
                  </mat-list> 
 
@@ -179,7 +183,7 @@
 
     <div
       class="listTag"
-      *ngIf="searchText.length < 3 "
+      *ngIf="searchText.length > 2
       (swipeleft)="swipeLeft()" 
       (swiperight)="swipeRight()"
     >
