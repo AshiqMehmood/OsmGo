@@ -1,4 +1,4 @@
-import { Component, NgZone, AfterViewInit } from '@angular/core';
+import { Component, NgZone, AfterViewInit, Input , Inject} from '@angular/core';
 import {
   NavController, MenuController,
   ModalController, ToastController, Platform, AlertController, LoadingController
@@ -31,10 +31,17 @@ import { cloneDeep, clone } from 'lodash';
 import { addAttributesToFeature } from '../../../../scripts/osmToOsmgo/index.js'
 
 //dialog
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
+//
+import {WelcomeModalComponent} from "../welcome-modal/welcome-modal.component"
 
 const { App } = Plugins;
+
+
+export interface DialogData {
+  name: string;
+}
 
 @Component({
   templateUrl: './main.html',
@@ -49,6 +56,7 @@ export class MainPage implements AfterViewInit {
   loadingData = false
   loading = true;
   dataAlert = "";
+  buttonType="Sign out"
 
   // authType = this.platform.platforms().includes('hybrid') ? 'basic' : 'oauth'
 
@@ -75,8 +83,7 @@ export class MainPage implements AfterViewInit {
     private _bottomSheet: MatBottomSheet,
     public dialog: MatDialog
   ) {
-
-
+  
 
     this.router.events.subscribe((e) => {
 
@@ -163,13 +170,28 @@ export class MainPage implements AfterViewInit {
     this.swUpdate.available.subscribe(event => {
       this.newVersion = true;
     });
+   
+   this.presentWelcomePage();
   }
+  async presentWelcomePage(){
+      const modal = await this.modalCtrl.create({
+        component: WelcomeModalComponent,
+        cssClass: 'welcome-modal-style'
+      });
+      return await modal.present();
+  }
+
   openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+    const dialogRef = this.dialog.open(DialogContentExampleDialog,{
+      data: {name: this.buttonType}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+
+    
+  event.preventDefault();
   }
 
   openBottomSheet(): void {
@@ -198,6 +220,7 @@ export class MainPage implements AfterViewInit {
 
   presentConfirm() {
     this.alertCtrl.create({
+     
       header: this.translate.instant('MAIN.EXIT_CONFIRM_HEADER'),
       message: this.translate.instant('MAIN.EXIT_CONFIRM_MESSAGE'),
       buttons: [
@@ -213,6 +236,7 @@ export class MainPage implements AfterViewInit {
           handler: () => {
             window.navigator['app'].exitApp();
           }
+        
         }
       ]
     }).then(alert => {
@@ -396,6 +420,7 @@ export class BottomSheetOverviewExampleSheet {
     featuresChanges = [];
     basicPassword = null;
     connectionError;
+    buttonType="delete"
 
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>,
@@ -408,7 +433,8 @@ export class BottomSheetOverviewExampleSheet {
     public configService: ConfigService,
     public platform: Platform,
     private translate: TranslateService,
-    public initService: InitService
+    public initService: InitService,
+    public dialog: MatDialog
     ) {
 
         this.commentChangeset = this.configService.getChangeSetComment();
@@ -439,6 +465,7 @@ this.basicPassword = this.configService.user_info.password;
 
   presentConfirm(event: MouseEvent) {
     this.alertCtrl.create({
+       
         header: this.translate.instant('SEND_DATA.DELETE_CONFIRM_HEADER'),
         message: this.translate.instant('SEND_DATA.DELETE_CONFIRM_MESSAGE'),
         buttons: [
@@ -450,7 +477,9 @@ this.basicPassword = this.configService.user_info.password;
                 }
             },
             {
+               
                 text: this.translate.instant('SHARED.CONFIRM'),
+                cssClass: 'customClass',
                 handler: () => {
                     this.cancelAllFeatures();
                 }
@@ -741,6 +770,7 @@ async cancelAllFeatures() { // rollBack
         this.mapService.eventMarkerChangedReDraw.emit(this.dataService.getGeojsonChanged());
         this.navCtrl.pop();
     });
+   
 }
 
 centerToElement(pointCoordinates) {
@@ -765,7 +795,17 @@ ngAfterViewInit() {
 
 export class DialogContentExampleDialog {
 
-  constructor( public osmApi: OsmApiService){
+  constructor( 
+    public dialogRef: MatDialogRef< DialogContentExampleDialog >,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public osmApi: OsmApiService
+   
+
+    )
+    {
 
   }
+
+  
+
 }

@@ -40,12 +40,10 @@ import { AboutPage } from './components/about/about';
 import { MainPage } from './components/main/main';
 import { MenuPage } from './components/menu/menu';
 import { LoginPage } from './components/login/login.component';
-import { AddPointsComponent } from "./components/add-points/add-points.component";
-import {CommontagsComponent } from "./components/add-points/commontags/commontags.component"
-import {AlltagsComponent } from "./components/add-points/alltags/alltags.component"
 import { LandingPageComponent } from "./components/landing-page/landing-page.component"
 import {BottomSheetOverviewExampleSheet} from "./components/main/main"
 import {DialogContentExampleDialog} from "./components/main/main"
+import {WelcomeModalComponent} from "./components/welcome-modal/welcome-modal.component"
 
 import { ModalsContentPage } from './components/modal/modal';
 import { ModalPrimaryTag } from './components/modal/modal.primaryTag/modal.primaryTag';
@@ -118,7 +116,7 @@ export function createTranslateLoader(http: HttpClient) {
     TagListElementComponent,
     ModalPrimaryTag, ModalsContentPage, ModalSelectList, PushDataToOsmPage, SettingsPage,DialogMultiFeaturesComponent,
     ReadMeta, ReadPrimaryKey, ReadOtherTag, ReadPresets, EditOtherTag, EditPresets, EditPrimaryKey, AlertComponent, 
-    IconComponent, SelectComponent,
+    IconComponent, SelectComponent,WelcomeModalComponent,
 
     DisplayPresetLabelPipe,
     FilterByIndexPipe,
@@ -130,15 +128,12 @@ export function createTranslateLoader(http: HttpClient) {
     FilterExcludeKeysPipe,
     DisplayTagsPipe, FilterByByGeometryTypePipe, IsBookmarkedPipe,
     FilterBySearchablePipe, FiltersTagsByIdsPipe, SortArrayPipe, LimitDisplayTagsPipe, 
-    AddPointsComponent,
-    CommontagsComponent,
-    AlltagsComponent,
     LandingPageComponent,
     BottomSheetOverviewExampleSheet,
     DialogContentExampleDialog
   
   ],
-  entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent, BottomSheetOverviewExampleSheet,DialogContentExampleDialog ],
+  entryComponents: [WelcomeModalComponent,ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent, BottomSheetOverviewExampleSheet,DialogContentExampleDialog ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -5,6 +5,10 @@
     $tabHeight: 0;
     $searchSelectHeight : 65px;
 
+    
+    $headerHeight :56px;
+    $footerHeight : 60px;
+
 
 
     #searchSelect{
@@ -79,4 +83,14 @@
     margin-top: 4px;
     padding-top: 4px;
     height:auto;
+    overflow-y: scroll;
+}
+
+.content{
+    position: absolute;
+    bottom: $footerHeight;
+    overflow: auto;
+    top:$headerHeight; 
+    width: 100%;
+    background-color: white;
 }

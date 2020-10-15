@@ -1,13 +1,17 @@
 <div style="height:auto; margin:2px;" >
-<h3 style="font-weight: bold;margin:2px; padding:2px; color:#3c3c3c;">You have <span style="color:#0000CD;">{{summary.Total}}</span> new changes to upload</h3>
+<h3 style="font-weight: bold;margin:2px; padding:2px; color:#3c3c3c;">You have <span style="color:#0000CD;">{{summary.Total}}</span> 
+    new 
+    <span *ngIf="summary.Total == 1">change</span>
+    <span *ngIf="summary.Total >= 2">changes</span>
+     to upload</h3>
   
 
 <ul role="list" style="font-weight: bold; width:100%">
     <li style="width:100%; color:#615f5f; margin-top:2px;">
-        Created:  {{summary.Create}} 
+        Created:<span style="margin-left:7px;">{{summary.Create}}</span>
     </li>
-    <li  style="width:100%; color:#615f5f; margin-top:2px;">Updated:  {{summary.Update}} </li>
-    <li   style="width:100%; color:#615f5f; margin-top:2px;">Deleted:  {{summary.Delete}} </li>
+    <li  style="width:100%; color:#615f5f; margin-top:2px;">Updated:<span  style="margin-left:7px;">{{summary.Update}}</span> </li>
+    <li   style="width:100%; color:#615f5f; margin-top:2px;">Deleted:<span  style="margin-left:7px;">{{summary.Delete}}</span> </li>
 
  <mat-form-field
  *ngIf="this.configService.user_info.connected"
@@ -29,10 +33,11 @@
 
 <div class="d-flex mt-4">
     <button style="width:50%"
-    mat-raised-button 
+    mat-stroked-button 
     (click)="presentConfirm($event)" 
         color="warn"
         [disabled]="isPushing"
+        isRoundButton=true
     >
         Delete 
     </button>
@@ -41,7 +46,7 @@
           mat-raised-button 
         (click)="openLink($event)" 
         color="primary"
-        
+        isRoundButton=true
     >
         Login to upload
     </button>
@@ -51,7 +56,8 @@
         (click)="pushDataToOsm(commentChangeset, this.basicPassword)" 
         color="primary"
         [disabled]="!configService.user_info.connected || !featuresChanges || featuresChanges.length === 0 || isPushing"
-    >
+        isRoundButton=true
+        >
         Upload
     </button>
 

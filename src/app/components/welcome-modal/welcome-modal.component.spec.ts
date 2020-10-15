@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CommontagsComponent } from './commontags.component';
+import { WelcomeModalComponent } from './welcome-modal.component';
 
-describe('CommontagsComponent', () => {
-  let component: CommontagsComponent;
-  let fixture: ComponentFixture<CommontagsComponent>;
+describe('WelcomeModalComponent', () => {
+  let component: WelcomeModalComponent;
+  let fixture: ComponentFixture<WelcomeModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommontagsComponent ],
+      declarations: [ WelcomeModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CommontagsComponent);
+    fixture = TestBed.createComponent(WelcomeModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

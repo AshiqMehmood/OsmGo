@@ -16,9 +16,12 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {}
 
-  pushPage(page){
-    this.navCtrl.navigateForward(page);
+  pushPage(value){  
+    this.navCtrl.navigateForward(value);
+   
   }
+
+  
 }
 
 
