@@ -14,11 +14,12 @@
                     {{tagConfig.description[language] !== undefined ? tagConfig.description[language] : tagConfig.description['en']}}
                 </p>
 
+                <!--
                 <span *ngIf="displayCode && tagConfig">
                         <ion-icon name="code"></ion-icon>
-                        {{tagConfig.tags | displayTags}}
-                        <!-- {{this.tagsConfig[primaryKey.key].lbl[language] || this.tagsConfig[primaryKey.key].lbl['en'] || ''}} -->
-                </span>
+                        {{tagConfig.tags | displayTags}}-->
+                        <!-- {{this.tagsConfig[primaryKey.key].lbl[language] || this.tagsConfig[primaryKey.key].lbl['en'] || ''}} 
+                </span>-->
 
                 <span *ngIf="!tagConfig">
                         <ion-icon name="code"></ion-icon>

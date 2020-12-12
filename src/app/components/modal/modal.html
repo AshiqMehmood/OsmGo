@@ -1,6 +1,28 @@
 <div class="wrapper" [ngSwitch]="typeFiche">
 	<!-- -------------------------SOF *ngSwitchCase="'Read'"------------------------------------ -->
 	<div *ngSwitchCase="'Read'" style="height:100%">
+		
+		<mat-toolbar [style.backgroundColor]="'#ffffff'">
+			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+			 *ngIf="typeFiche==='Read'"		
+			(click)="dismiss()"
+			>
+			 <mat-icon>close</mat-icon>
+		   </button>
+		  
+		   
+		   <span  style="padding-right:10px;"><small style="letter-spacing: 2px;">Tag details</small></span>
+		  
+		   <span class="example-spacer"></span>
+	
+		   <button 	mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+		   (click)="updateMode()" >		
+			  
+			   <mat-icon matSuffix>edit</mat-icon>	
+		   </button>
+	 
+		 </mat-toolbar>
+		 <!--
 		<ion-header>
 			<ion-toolbar>
 				<ion-title>
@@ -16,8 +38,10 @@
 	
 
 		</ion-header>
+		-->
 		<div class="content">
-	
+			<mat-list class="app-class">
+			<!--
 			<div class="actions"> 
 				<ion-fab  horizontal="end" >
 						<ion-fab-button  size="small" (click)="toogleCode()">
@@ -36,7 +60,7 @@
 					</ion-fab-button>
 				</ion-fab>
 			</div>
-
+		-->
 			<read-meta *ngIf="feature.properties.meta" 
 					[feature]="feature"
 					[displayCode]="displayCode"
@@ -63,6 +87,17 @@
 				[primaryKeys]="tagsService.primaryKeys"
 				[jsonSprites]="tagsService.jsonSprites">
 			</read-primary-key>
+			
+			<mat-list-item style="margin-top: 1px;
+						padding-top: 1px;
+						height: auto;">
+				<mat-card style="width:100%;">
+				{{(findElement(tags,{key:'name'}).value != '') ? 
+					findElement(tags,{key:'name'}).value : 
+					('MODAL_SELECTED_ITEM.NO_NAME' | translate)
+				}}
+				</mat-card>
+			</mat-list-item>
 
 			<!--Les presets-->
 			<div *ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets;">
@@ -79,34 +114,59 @@
 			<div *ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets:true;">
 				<read-other-tag [tag]="tag" *ngIf="!tag.preset "> </read-other-tag>
 			</div>
-
-		</div>
-
+		</mat-list>
+	</div>
+	
 		<ion-footer>
+			<!--
 			<ion-fab-button *ngIf="typeFiche==='Read'" (click)="dismiss()" class="fabInlineMarginLess">
 				<ion-icon name="close"> </ion-icon>
 			</ion-fab-button>
-
+			-->
+		
+<!--
 			<ion-fab-button (click)="updateMode()" class="fabInlineMarginLess">
 				<ion-icon name="create"> </ion-icon>
 			</ion-fab-button>
+			-->
+		
 
+			<!--
 			<ion-fab-button  (click)="cancelChange()" color="danger" *ngIf="feature.properties.changeType" class="fabInlineMarginLess">
 				<ion-icon name="close"> </ion-icon>
 				<ion-icon name="create"> </ion-icon>
 			</ion-fab-button>
+			-->
+			<button 
+			style="position:absolute; left:2px;"
+			*ngIf="feature.properties.changeType"
+			(click)="cancelChange()" mat-raised-button color="warn">
+			<mat-icon>cancel_presentation</mat-icon>				
+				<span style="text-transform: initial;">Dismiss Changes</span>		
+			</button>
 
+<!--
 			<ion-fab-button *ngIf="!feature.properties.changeType" color="secondary" (click)="confirmAddSurveyDate()" class="fabInlineMarginLess fabSurveyDate">
 				<ion-icon name="checkmark-circle-outline"></ion-icon>
 			</ion-fab-button>
+			-->
+			<button 
+			style="position:absolute; right:2px;"
+			*ngIf="!feature.properties.changeType" 		
+			(click)="confirmAddSurveyDate()"
+			 mat-raised-button color="primary">	
+			<mat-icon matSuffix>keyboard_arrow_right</mat-icon>			
+				<span style="text-transform: initial;">Confirm</span>		
+			</button>
+
 		</ion-footer>
 	</div>
 
 
 
 	<!-- ------------------------- *ngSwitchCase="'EDIT'"------------------------------------ -->
-	<div *ngSwitchCase="'Edit'" style="height:100%">
-
+	<div *ngSwitchCase="'Edit'" style="height:100%;">
+		<!--
 		<ion-header>
 			<ion-toolbar>
 				<ion-title>
@@ -120,9 +180,30 @@
 			</ion-toolbar>
 
 		</ion-header>
+		-->
+		
 
+		<mat-toolbar [style.backgroundColor]="'#ffffff'">
+			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+			 (click) = "goBackToSelectTag()"
+			>
+			 <mat-icon>keyboard_backspace</mat-icon>
+		   </button>
+		  
+		   
+		   <span  style="padding-right:10px;"><small style="letter-spacing: 2px;">Add details</small></span>
+		  
+		   <span class="example-spacer"></span>
+		   <button 
+		   *ngIf="feature.properties.type === 'node'" 
+		   (click)="moveOsmElement()" mat-icon-button>				
+			   	
+			   <mat-icon matSuffix>zoom_out_map</mat-icon>	
+		   </button>
+	 
+		 </mat-toolbar>
 		<div class="content">
-
+			<!--
 			<div class="actions"> 
 				<ion-fab  horizontal="end" >
 						<ion-fab-button  size="small" (click)="toogleCode()">
@@ -155,7 +236,11 @@
 				</ion-fab>
 
 			</div>
+		 -->
+		
 
+	<mat-list class="app-class">
+		
 			<read-meta *ngIf="feature.properties.meta" 
 				[feature]="feature"
 				[displayCode]="displayCode"
@@ -182,10 +267,35 @@
 				(openPrimaryTagModal)="openPrimaryTagModal()">
 			</edit-primary-key>
 
-			
+		<mat-list-item style="margin-top: 1px;
+						padding-top: 1px;
+						height: auto;">
+				
+			<mat-form-field
+				appearance="fill"
+				style="width:100%; margin-top:2px; padding-top:2px;margin:3px; padding:1px;">
+				<mat-label>Name</mat-label>		
+				<input 
+				matInput
+				[(ngModel)]="findElement(tags,{key : 'name'}).value"
+				type="text"
+				/>	
+				
+				<button mat-button 
+					*ngIf="findElement(tags,{key : 'name'}).value"
+					matSuffix mat-icon-button aria-label="Clear" 
+					(click)="findElement(tags,{key : 'name'}).value=''">
+					<mat-icon>close</mat-icon>
+				  </button>	  
+			</mat-form-field>
+		</mat-list-item>
 			<!--Les presets-->
-			<div *ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets">
-				<edit-presets *ngIf="tag.preset" 
+			<mat-list-item style="margin-top: 1px;
+					padding-top: 1px;
+					height: auto;"
+			*ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets">
+				<edit-presets style="width:100%;"
+				*ngIf="tag.preset" 
 					[displayCode]="displayCode" 
 					[tag]="tag"
 					[language] = "this.configService.config.languageTags"
@@ -193,19 +303,41 @@
 					(addTags)="addPresetsTags($event)"
 					>
 				</edit-presets>
-			</div>
+			</mat-list-item>
 
-			<!--Le reste des tags-->
+			<!--Le reste des tags
 		
-			<div *ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets:true">
+			<div
+			*ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets:true">
 				<edit-other-tag [tag]="tag" (deleteTag)="deleteTag($event)"> </edit-other-tag>
-			</div>
+		  </div>
+		-->
+		<div mat-subheader style="color: #0000CD;">
+			<span style="position:absolute; left:10px;">Tags</span>
+			<div style="position:absolute; right:10px;">
+			<button 
+			 *ngIf="!displayAddTag" (click)="displayAddTag = true"  mat-stroked-button color="warn">
+				<mat-icon matSuffix>add</mat-icon>
+				<span style="text-transform: initial;">Add a Tag</span>
+			</button>
+		</div>
+		</div>
 
-			<!--Nouveaux tag-->
+		  <mat-list-item
+		  *ngFor="let tag of tags | filterExcludeKeys:tagConfig:configService.config.countryTags:tagsService.primaryKeys:tagsService.presets:true">
+			
+				<edit-other-tag [tag]="tag" (deleteTag)="deleteTag($event)"> </edit-other-tag>
+			
+
+		</mat-list-item>
+		
+			<!--Nouveaux tag
 			<ion-fab-button tappable color="secondary" *ngIf="!displayAddTag" (click)="displayAddTag = true" style="margin:5px;">
 				<ion-icon name="add"> </ion-icon>
 			</ion-fab-button>
-
+			-->
+	
+<!--
 			<ion-card *ngIf="displayAddTag">
 				<ion-card-header *ngIf="displayAddTag">
 						{{ 'MODAL_SELECTED_ITEM.ADD_A_TAG' | translate}}
@@ -228,42 +360,107 @@
 					</ion-button>
 				</ion-card-content>
 			</ion-card>
+-->
+				<mat-list-item *ngIf="displayAddTag" style="margin-top: 8px; padding-top:2px;">
+					<mat-form-field appearance="fill" class="example-half-width" >
+						<mat-label>Key</mat-label>
+						<input matInput
+						[(ngModel)] = "newTag.key"
+						placeholder="Ex: 'cafe'"
+						type="text"
 
+					/> 
+					</mat-form-field>
+					<mat-form-field appearance="fill" class="example-half-width">
+						<mat-label>Value</mat-label>
+						<input matInput
+						[(ngModel)] = "newTag.value"
+						placeholder="Ex: 'cafe'"
+						type="text"
+
+					/> 				
+					</mat-form-field>
+					
+				</mat-list-item>
+				<mat-list-item *ngIf="displayAddTag" style="margin-bottom: 6px; padding-bottom: 2px;">
+					<button
+					[disabled]="newTag.key == '' || newTag.value == ''" (click)="addTag()" 
+					mat-raised-button color="primary">	
+					Add
+				</button>
+				</mat-list-item>
+							
+
+		  </mat-list>
 		</div>
-
 		<ion-footer>
-			<ion-fab-button tappable (click)="dismiss()" class="fabInlineMarginLess">
+			<!--<ion-fab-button tappable (click)="dismiss()" class="fabInlineMarginLess">
 				<ion-icon name="close"> </ion-icon>
 			</ion-fab-button>
+		-->
+			<button 
+			(click)="dismiss()"  mat-raised-button color="warn">	
+				<mat-icon>close</mat-icon>
+				<span style="text-transform: initial;">Cancel</span>
+				
+			</button>
+	<!--
 			<ion-fab-button tappable color="secondary"  *ngIf="mode =='Update'"
 			 (click)="updateOsmElement(tagConfig)" class="fabInlineMarginLess" style="margin-right:15px;">
 				<ion-icon name="checkmark"> </ion-icon>
 			</ion-fab-button>
+	-->
+			<button style="position:absolute; right:2px;"
+			*ngIf="mode =='Update'"  (click)="updateOsmElement(tagConfig)"  mat-raised-button color="primary">	
+				<span style="text-transform: initial;">Update</span>
+				<mat-icon matSuffix>keyboard_arrow_right</mat-icon>
+			</button>
 
-			<ion-fab-button  tappable color="secondary" *ngIf="mode =='Create'" 
+			<!--<ion-fab-button  tappable color="secondary" *ngIf="mode =='Create'" 
 			 (click)="createOsmElement(tagConfig)" class="fabInlineMarginLess">
 				<ion-icon name="checkmark"> </ion-icon>
 			</ion-fab-button>
+			-->
+			<button style="position:absolute; right:2px;"
+			*ngIf="mode =='Create'"  (click)="createOsmElement(tagConfig)"  mat-raised-button color="primary">	
+				<span style="text-transform: initial;">Submit</span>
+				<mat-icon matSuffix>keyboard_arrow_right</mat-icon>
+			</button>
 	
-
+		<!--
 			<ion-fab-button  tappable *ngIf="feature.properties.type === 'node'" 
 			[disabled]="feature.properties.usedByWays"
 			(click)="moveOsmElement()" class="fabInlineMarginLess">
 				<ion-icon name="move"> </ion-icon>
 			</ion-fab-button>
+		
+			
 
 			<ion-fab-button tappable color="danger" *ngIf="feature.properties.changeType" class="fabInlineMarginLess"
 			(click)="cancelChange()" >
 				<ion-icon name="close"> </ion-icon>
 				<ion-icon name="create"> </ion-icon>
 			</ion-fab-button>
+			-->
 
+<!--
 			<ion-fab-button tappable ion-fab right color="danger" *ngIf="feature.properties.type == 'node' && mode=='Update'"
 			 (click)="presentConfirm()" class="fabInlineMarginLess">
 				<ion-icon name="trash"> </ion-icon>
 			</ion-fab-button>
+-->	
+			<button 
+			style="margin-left:4px;"
+			*ngIf="feature.properties.type == 'node' && mode=='Update'"
+			(click)="presentConfirm()" mat-raised-button color="warn">	
+			<mat-icon>delete</mat-icon>			
+				<span style="text-transform: initial;">Delete</span>		
+			</button>
+
 
 		</ion-footer>
+
+	
 
 	</div>
 	<!--EOF *ngSwitchCase="'Update'"-->

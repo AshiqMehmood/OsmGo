@@ -2,6 +2,29 @@ import { NgModule } from '@angular/core';
 import { BrowserModule,HammerModule} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSidenavModule} from '@angular/material/sidenav'; 
+import {MatTabsModule} from '@angular/material/tabs'; 
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';  
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatIconModule} from '@angular/material/icon'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+import {MatListModule} from '@angular/material/list'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import {MatTreeModule} from '@angular/material/tree'; 
+import {MatSelectModule} from '@angular/material/select'; 
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatChipsModule} from '@angular/material/chips'; 
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet'; 
+import {MatTooltipModule} from '@angular/material/tooltip'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatBadgeModule} from '@angular/material/badge'; 
+
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AngularResizedEventModule } from 'angular-resize-event';
@@ -17,6 +40,10 @@ import { AboutPage } from './components/about/about';
 import { MainPage } from './components/main/main';
 import { MenuPage } from './components/menu/menu';
 import { LoginPage } from './components/login/login.component';
+import { LandingPageComponent } from "./components/landing-page/landing-page.component"
+import {BottomSheetOverviewExampleSheet} from "./components/main/main"
+import {DialogContentExampleDialog} from "./components/main/main"
+import {WelcomeModalComponent} from "./components/welcome-modal/welcome-modal.component"
 
 import { ModalsContentPage } from './components/modal/modal';
 import { ModalPrimaryTag } from './components/modal/modal.primaryTag/modal.primaryTag';
@@ -49,10 +76,6 @@ import { FilterDeprecatedTagPipe } from './pipes/filterDeprecatedTag.pipe';
 import { FilterExcludeKeysPipe } from './pipes/filterExcludeKeys.pipe';
 
 
-
-
-
-
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
@@ -81,6 +104,7 @@ import { SelectComponent } from './components/modal/components/select/select.com
 import { SortArrayPipe } from './pipes/sort-array.pipe';
 import { LimitDisplayTagsPipe } from './pipes/limit-display-tags.pipe';
 
+import {FilterByIndexPipe} from './pipes/filter-by-index.pipe'
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -92,10 +116,10 @@ export function createTranslateLoader(http: HttpClient) {
     TagListElementComponent,
     ModalPrimaryTag, ModalsContentPage, ModalSelectList, PushDataToOsmPage, SettingsPage,DialogMultiFeaturesComponent,
     ReadMeta, ReadPrimaryKey, ReadOtherTag, ReadPresets, EditOtherTag, EditPresets, EditPrimaryKey, AlertComponent, 
-    IconComponent, SelectComponent,
+    IconComponent, SelectComponent,WelcomeModalComponent,
 
     DisplayPresetLabelPipe,
- 
+    FilterByIndexPipe,
     FilterByTagsContentPipe,
     FilterExcludeTagByCountryCode,
     FilterByCountryCode,
@@ -103,9 +127,13 @@ export function createTranslateLoader(http: HttpClient) {
     FilterDeprecatedTagPipe,
     FilterExcludeKeysPipe,
     DisplayTagsPipe, FilterByByGeometryTypePipe, IsBookmarkedPipe,
-    FilterBySearchablePipe, FiltersTagsByIdsPipe, SortArrayPipe, LimitDisplayTagsPipe,
+    FilterBySearchablePipe, FiltersTagsByIdsPipe, SortArrayPipe, LimitDisplayTagsPipe, 
+    LandingPageComponent,
+    BottomSheetOverviewExampleSheet,
+    DialogContentExampleDialog
+  
   ],
-  entryComponents: [ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent],
+  entryComponents: [WelcomeModalComponent,ModalsContentPage, ModalPrimaryTag, ModalSelectList, DialogMultiFeaturesComponent, HiddenTagsComponent, ActiveTagsComponent, BookmarkedTagsComponent, BottomSheetOverviewExampleSheet,DialogContentExampleDialog ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -117,6 +145,29 @@ export function createTranslateLoader(http: HttpClient) {
     MomentModule,
     HammerModule,
     AngularResizedEventModule,
+    MatGridListModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatTreeModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatChipsModule,
+    MatBottomSheetModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatBadgeModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

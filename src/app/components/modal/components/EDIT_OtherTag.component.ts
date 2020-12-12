@@ -1,10 +1,45 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
+export interface TagList {
+	name: string;
+  }
+
+  
 @Component({
     selector: 'edit-other-tag',
     styleUrls: ['./style.scss'],
     template: `
-   	    <ion-card>
+	<mat-chip-list>
+				  <mat-chip style="font-size: 1.1em;">
+					
+				 		{{tag.key}}={{tag.value}}
+					
+                    <mat-icon matChipRemove (click)="eventDeleteTag()" *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+	  </mat-chip-list>          
+       
+  `
+})
+export class EditOtherTag {
+    @Input() tag;
+    @Output() deleteTag = new EventEmitter();
+	removable = true;
+	selectable = true;
+	
+	
+    eventDeleteTag() {
+        this.deleteTag.emit(this.tag);
+	}
+	
+	
+	
+
+}
+
+/**
+  <ion-card>
 				<ion-card-header>
 				<ion-icon name="code"></ion-icon>	<b>{{tag.key}}</b>
 				</ion-card-header>
@@ -23,15 +58,4 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 				</ion-card-content>
 			</ion-card>
-  `
-})
-export class EditOtherTag {
-    @Input() tag;
-    @Output() deleteTag = new EventEmitter();
-
-    eventDeleteTag() {
-        this.deleteTag.emit(this.tag);
-    }
-
-
-}
+ */

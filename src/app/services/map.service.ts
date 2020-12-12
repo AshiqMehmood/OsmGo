@@ -25,6 +25,7 @@ import { setIconStyle } from "../../../scripts/osmToOsmgo/index.js";
 import { TagConfig } from 'src/type';
 import { Config } from 'protractor';
 import { of } from 'rxjs';
+import { disableDebugTools } from '@angular/platform-browser';
 
 const { Haptics } = Plugins;
 @Injectable({ providedIn: 'root' })
@@ -443,11 +444,12 @@ export class MapService {
           dragRotate: true,
           trackResize: false,
           pitchWithRotate: false,
-          collectResourceTiming: false
+          collectResourceTiming: false,
+         
         });
 
-
-        this.map.addControl(new mapboxgl.NavigationControl());
+        //    >>>>>Toolbox appear on right top corner for 'Zooming' & 'Rotating' <<<<<<<
+       // this.map.addControl(new mapboxgl.NavigationControl());
 
         const scale = new mapboxgl.ScaleControl({
           maxWidth: 160,

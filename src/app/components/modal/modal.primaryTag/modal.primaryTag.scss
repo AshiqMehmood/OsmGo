@@ -5,6 +5,10 @@
     $tabHeight: 0;
     $searchSelectHeight : 65px;
 
+    
+    $headerHeight :56px;
+    $footerHeight : 60px;
+
 
 
     #searchSelect{
@@ -29,7 +33,7 @@
 
 
     .listTag{
-        position: absolute;
+        position: relative;
         top: $searchSelectHeight +  $tabHeight;
         bottom: 50px;
         width: 100%;
@@ -49,6 +53,44 @@
         margin: 0;
     }
 
+    .example-form {
+        width: 100%;
+        margin: 5px;
+        padding: 5px;
 
+      }
+      .example-full-width {
+        width: 100%;
+       margin: 2px;
+       padding: 2px;
+          }    
+.example-spacer{
+    flex: 1 1 auto;
+}
 
+.app-class {
+    margin-top: 1px;
+    padding-top: 1px;
+    height: auto;
+}
+.mat-list-item-select{
+    margin-top: 4px;
+    padding-top: 3px;
+    height:auto;
+}
 
+.mat-list-item-last{
+    margin-top: 4px;
+    padding-top: 4px;
+    height:auto;
+    overflow-y: scroll;
+}
+
+.content{
+    position: absolute;
+    bottom: $footerHeight;
+    overflow: auto;
+    top:$headerHeight; 
+    width: 100%;
+    background-color: white;
+}

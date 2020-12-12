@@ -88,7 +88,8 @@ export class ConfigService {
         changeSetComment: '',
         languageUi: window.navigator.language.split('-')[0] || null,
         languageTags: window.navigator.language.split('-')[0] || null,
-        countryTags: window.navigator.language && window.navigator.language.split('-')[1] ? window.navigator.language.split('-')[1].toUpperCase() : null,
+        // countryTags: window.navigator.language && window.navigator.language.split('-')[1] ? window.navigator.language.split('-')[1].toUpperCase() : null,
+        countryTags: 'IN',
         oldTagsIcon: { display: true, year: 4 },
         displayFixmeIcon: true,
         addSurveyDate: true,
@@ -98,7 +99,7 @@ export class ConfigService {
         isSelectableLine : true,
         isSelectablePolygon: false,
         passwordSaved : true,
-        lastView: { lng: 0, lat: 0, zoom: 1, bearing: 0},
+        lastView: { lng: 76.27, lat: 10.833, zoom: 5, bearing: 0},
         centerWhenGpsIsReady: true
         
     };
@@ -168,7 +169,7 @@ export class ConfigService {
                     }
 
                     this.config.languageTags = this.config.languageTags || 'en';
-                    this.config.countryTags = this.config.countryTags || 'GB';
+                    this.config.countryTags = this.config.countryTags || 'US';
 
                     this.setIsSelectableLine(this.config.isSelectableLine);
                     this.setIsSelectablePolygon(this.config.isSelectablePolygon);

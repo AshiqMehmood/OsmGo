@@ -6,6 +6,8 @@ import { MainPage } from './components/main/main';
 import { SettingsPage } from './components/settings/settings';
 import { LoginPage } from './components/login/login.component';
 
+
+
 import { ManageTagsComponent } from './components/manage-tags/manage-tags.component';
 
 const routes: Routes = [
@@ -15,7 +17,8 @@ const routes: Routes = [
   { path: 'settings', component: SettingsPage},
   { path: 'pushData', component: PushDataToOsmPage},
   { path: 'login', component: LoginPage},
-  { path: 'tags', component: ManageTagsComponent}
+  { path: 'tags', component: ManageTagsComponent},
+  
 
 ];
 

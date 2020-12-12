@@ -1,0 +1,32 @@
+<div class="box">
+  <div >
+      <img src="assets/mapathon_logo.svg" style="width:150px; margin-bottom: 22px;"/>
+     
+      <h3>Welcome to Mapathon keralam</h3>
+      <p *ngIf="!this.configService.user_info.connected" 
+      style="color:rgb(120, 120, 120);">Please sign in if you want to upload a point
+
+      </p>
+      <div *ngIf="!this.configService.user_info.connected"
+      class="d-flex justify-content-center mt-4 pt-2">
+          <table>
+            <tr>
+              <button *ngIf="!this.configService.user_info.connected"
+               mat-raised-button color="primary" (click)="pushPage('/login')">Sign In</button>
+            </tr>
+            <tr>
+
+              <button mat-button  (click)="pushPage('/main')">Do It Later</button>
+            </tr>
+          </table>
+      </div>
+      <div *ngIf="this.configService.user_info.connected"
+        class="d-flex justify-content-center mt-4 pt-2">
+        <button mat-raised-button [style.backgroundColor]="'#D3D3D3'" (click)="dismiss()">Explore</button>
+      </div>
+      
+
+
+  </div>
+
+</div>

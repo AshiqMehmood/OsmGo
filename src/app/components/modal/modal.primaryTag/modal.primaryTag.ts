@@ -4,6 +4,17 @@ import { TagsService } from '../../../services/tags.service';
 import { ConfigService } from '../../../services/config.service';
 import { TagConfig } from '../../../../type'
 
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
+export interface State {
+    flag: string;
+    name: string;
+    population: string;
+  }
+
+
 @Component({
     selector: 'modal-primary-tag',
     templateUrl: './modal.primaryTag.html',
@@ -15,6 +26,7 @@ export class ModalPrimaryTag implements OnInit {
     loading = true;
     allTags: TagConfig[];
     searchText = '';
+    advancedTex = '';
     currentListOfTags: TagConfig[] = [];
     typeFiche = 'list';
     customValue = '';
@@ -23,16 +35,23 @@ export class ModalPrimaryTag implements OnInit {
     geometryType: 'point' | 'vertex' | 'line' | 'area'
     displayType = 'lastTags'
 
+    name= '';
+
+    stateCtrl = new FormControl();
+    filteredStates: Observable<State[]>;
+
 
     constructor(
         public params: NavParams,
         public modalCtrl: ModalController,
         public tagsService: TagsService,
         public configService: ConfigService
+       
 
 
     ) {
         this.oldTagConfig = this.params.data.tagConfig
+        //this.tagsService.tags = []
     }
 
     ngOnInit() {
@@ -40,6 +59,7 @@ export class ModalPrimaryTag implements OnInit {
         this.geometryType = this.params.data.geometryType;
         this.currentListOfTags = this.tagsService.tags;
         this.loading = false;
+
     }
 
     dismiss(data = null) {
@@ -51,6 +71,7 @@ export class ModalPrimaryTag implements OnInit {
     }
     cancel() {
         this.dismiss();
+        
     }
 
     selected(config) {
@@ -101,4 +122,7 @@ export class ModalPrimaryTag implements OnInit {
         this.displayType = value;
         this.configService.setDefaultPrimarykeyWindows(value)
     }
+
+   
 }
+

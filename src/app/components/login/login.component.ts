@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { OsmApiService } from '../../services/osmApi.service';
 import { ConfigService } from 'src/app/services/config.service';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'login',
@@ -19,8 +19,16 @@ export class LoginPage {
     constructor(public osmApi: OsmApiService, 
         public navCtrl: NavController, 
         public configService: ConfigService,
-        public platform: Platform,) {
+        public platform: Platform, 
+        private _snackbar:MatSnackBar )
+        {
        
+    }
+
+    openSnackBar(message: string, action?: string){
+        this._snackbar.open(message, action, {
+            duration: 2000,
+          })
     }
 
     login() {
@@ -33,6 +41,7 @@ export class LoginPage {
             console.log(error);
             this.loading = false;
             this.errorLogin = error;
+            this.openSnackBar("Login Failed !", "Try Again");
         })
         );
     }

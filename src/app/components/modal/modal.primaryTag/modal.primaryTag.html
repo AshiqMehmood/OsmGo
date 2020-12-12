@@ -1,18 +1,154 @@
 <div *ngIf="!loading" style="height:100%; background-color: white;">
-  <div>
-    <div id="searchSelect">
-      <div id="searchDiv">
-        <ion-searchbar
-        autocomplete='off' autocorrect='off' autocapitalize='none' 
-        inputmode="text"
-          [(ngModel)]="searchText"
-          [debounce]="300"
-        ></ion-searchbar>
-      </div>
-    </div>
-  {{geometriesFilter}}
-    <div class="listTag" *ngIf="searchText.length > 2 ">
+    <mat-toolbar [style.backgroundColor]="'#ffffff'">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+         (click) = "cancel()"
+        >
+         <mat-icon>close</mat-icon>
+       </button>
+      
+       
+       <span  style="padding-right:10px;"><small style="letter-spacing: 2px;">Add details</small></span>
+      
+       <span class="example-spacer"></span>
+     
+ 
+     </mat-toolbar>
+    
+  
+  
+<div class="content">
+      <!-- <div id="searchSelect">
+          <div id="searchDiv">
+            <ion-searchbar
+            autocomplete='off' autocorrect='off' autocapitalize='none' 
+            inputmode="text"
+              [(ngModel)]="searchText"
+              [debounce]="300"
+            ></ion-searchbar>
+          </div>
+        </div>
+        -->
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Basic" [backgroundColor]="primary" style="height:auto;" >
+        <mat-list class="app-class">
+          <div mat-subheader style="color: #0000CD; margin-top:2px;">Select Tag</div>
+            
+              <mat-list-item class="mat-list-item-select">
+        
+              <mat-icon mat-list-icon>streetview</mat-icon>   
+                        <form class="example-form">
+                            <mat-form-field class="example-full-width">
+                              <input matInput
+                                     placeholder="Categories*"
+                                     aria-label="State"
+                                     [matAutocomplete]="auto"
+                                     [(ngModel)]="searchText"
+                                     [formControl]="stateCtrl"
+                              >
+                            <mat-icon matSuffix>search</mat-icon>
+                              <mat-autocomplete #auto="matAutocomplete">                           
+                                <mat-option *ngFor="let tag of currentListOfTags
+                                | filtersTagsByIds:tagsService.hiddenTagsIds:true
+                                | filterDeprecatedTag 
+                                | filterBySearchable 
+                                | filterExcludeTagByCountryCode:countryTags 
+                                | filterByByGeometryType:[geometryType]
+                                | filterByTagsContent:[configService.config.languageTags, configService.config.countryTags]:searchText
+                                | limitDisplayTags:50;" 
+    
+                                [value]="tag.lbl"
+                                >
+                                <app-tag-list-element   style="width: 100%;"
+                                [tag]="tag"
+                                [countryTags]="configService.config.countryTags"
+                                [languageTags]="configService.config.languageTags"
+                                [jsonSprites]="tagsService.jsonSprites"
+                                [geometriesFilter]="geometriesPossible"
+                                [bookmarksIds]="tagsService.bookmarksIds"
+                                [oldTagConfig]="oldTagConfig"
+                                (removeBookmark)="tagsService.removeBookMark(tag)"
+                                (addBookmark)= "tagsService.addBookMark(tag)"
+                                (selected)="selected($event)"
+                                >
+                                </app-tag-list-element>
+                                                      
+                                </mat-option>
+                              </mat-autocomplete>
+                              
+                            </mat-form-field>
+                        </form>    
+                   </mat-list-item>
+                  <mat-list-item></mat-list-item>
+                   <div mat-subheader style="color: #0000CD;margin-top:6px; padding-top:4px;">Last Used Tags</div>                                   
+                  
+                   <mat-list-item *ngIf="tagsService.tags.length === 0">
+                    <p style="color: gray">No Previous Tags available</p>
+                   </mat-list-item>
+                   
+                   <div  *ngIf="!searchText">
+                   <mat-list-item 
+                 
+                     class="mat-list-item-last"
+                     *ngFor="let tag of tagsService.tags
+                        | filtersTagsByIds:tagsService.lastTagsUsedIds 
+                        | filterDeprecatedTag                       
+                        | filterBySearchable 
+                        | filterExcludeTagByCountryCode:countryTags 
+                        | filterByByGeometryType:[geometryType]     
+                       "  
+                        class="ion-no-padding">
+                      <app-tag-list-element  style="width: 100%;"
+                        [tag]="tag"
+                        [countryTags]="configService.config.countryTags"
+                        [languageTags]="configService.config.languageTags"
+                        [jsonSprites]="tagsService.jsonSprites"
+                        [geometriesFilter]="geometriesPossible"
+                        [bookmarksIds]="tagsService.bookmarksIds"
+                        [oldTagConfig]="oldTagConfig"
+                        (removeBookmark)= removeBookmark($event)
+                        (addBookmark)= addBookmark($event)
+                        (selected)="selected($event)"
+                        >
+                        </app-tag-list-element>
+                        <mat-divider></mat-divider>
+                    </mat-list-item> 
+                  </div>
+    
+                 </mat-list> 
 
+      </mat-tab>
+
+      <mat-tab label="Advanced" style="height:auto;">
+        <mat-list class="app-class">
+          <div mat-subheader style="color: #0000CD; margin-top:2px;">Add Custom Tag</div>
+            
+           <mat-list-item class="mat-list-item mb-3 pb-2">
+            <mat-icon mat-list-icon>streetview</mat-icon> 
+         <mat-form-field class="example-full-width">
+      
+          <input matInput
+            [(ngModel)] = "advancedText"
+            placeholder="Ex: 'cafe'"
+
+
+          />         
+        </mat-form-field>
+        </mat-list-item>       
+        </mat-list>
+        <div class="mt-3 pt-2">
+          <!--<h4> {{ 'MODAL_SELECTED_ITEM.CUSTOM_KEY_VALUE' | translate}} </h4>-->        
+              <ion-chip *ngFor="let k of tagsService.primaryKeys | sortArray">
+                <ion-label color="primary" (click)="addCustomValue(k,advancedText.toLowerCase())" >{{ k }}={{advancedText | lowercase}}</ion-label>
+              </ion-chip>
+            
+          </div>
+      </mat-tab>
+     
+    </mat-tab-group>
+
+   <!-- 
+  <div class="listTag" *ngIf="searchText.length > 2 ">
+ 
       <ion-list style="overflow-y: auto;">
         <ion-item *ngFor="let tag of currentListOfTags
         | filtersTagsByIds:tagsService.hiddenTagsIds:true
@@ -41,19 +177,13 @@
      </ion-list>
 
 
-      <!-- Add custum value (from searchBar to the key) -->
-      <div>
-			<h4> {{ 'MODAL_SELECTED_ITEM.CUSTOM_KEY_VALUE' | translate}} </h4>
-          <ion-chip *ngFor="let k of tagsService.primaryKeys | sortArray">
-            <ion-label color="primary" (click)="addCustomValue(k,searchText.toLowerCase())" >{{ k }}={{searchText | lowercase}}</ion-label>
-          </ion-chip>
-        
-      </div>
+      Add custum value (from searchBar to the key) 
+      
     </div>
 
     <div
       class="listTag"
-      *ngIf="searchText.length < 3 "
+      *ngIf="searchText.length > 2
       (swipeleft)="swipeLeft()" 
       (swiperight)="swipeRight()"
     >
@@ -101,42 +231,42 @@
        </ion-list>
       </div>
  
-      <div class="bookmarks" *ngIf="displayType == 'bookmarks'" >
-        <h4 style="text-align: center;">{{ 'MODAL_SELECTED_ITEM.BOOKMARKS' | translate }}</h4>
+        <div class="bookmarks" *ngIf="displayType == 'bookmarks'" >
+          <h4 style="text-align: center;">{{ 'MODAL_SELECTED_ITEM.BOOKMARKS' | translate }}</h4>
 
-        <ion-list style="overflow-y: auto;">
-          <ion-item *ngFor="let tag of tagsService.tags 
-                | filtersTagsByIds:tagsService.bookmarksIds
-                | filterExcludeTagByCountryCode:countryTags 
-                | filterByByGeometryType:[geometryType]"  
-          class="ion-no-padding">
-           <app-tag-list-element  style="width: 100%;"
-           [tag]="tag"
-           [countryTags]="configService.config.countryTags"
-           [languageTags]="configService.config.languageTags"
-           [jsonSprites]="tagsService.jsonSprites"
-           [geometriesFilter]="geometriesPossible"
-           [bookmarksIds]="tagsService.bookmarksIds"
-           [oldTagConfig]="oldTagConfig"
-           (removeBookmark)= removeBookmark($event)
-           (addBookmark)= addBookmark($event)
-           (selected)="selected($event)"
-           >
-           </app-tag-list-element>
-         </ion-item> 
-       </ion-list>
-  </div>
-	</div>
+          <ion-list style="overflow-y: auto;">
+            <ion-item *ngFor="let tag of tagsService.tags 
+                  | filtersTagsByIds:tagsService.bookmarksIds
+                  | filterExcludeTagByCountryCode:countryTags 
+                  | filterByByGeometryType:[geometryType]"  
+            class="ion-no-padding">
+            <app-tag-list-element  style="width: 100%;"
+            [tag]="tag"
+            [countryTags]="configService.config.countryTags"
+            [languageTags]="configService.config.languageTags"
+            [jsonSprites]="tagsService.jsonSprites"
+            [geometriesFilter]="geometriesPossible"
+            [bookmarksIds]="tagsService.bookmarksIds"
+            [oldTagConfig]="oldTagConfig"
+            (removeBookmark)= removeBookmark($event)
+            (addBookmark)= addBookmark($event)
+            (selected)="selected($event)"
+            >
+            </app-tag-list-element>
+          </ion-item> 
+        </ion-list>
+      </div>
+	  </div>
 	
 
   </div>
-
+  
   <ion-footer id="footer">
     <ion-button ion-button color="danger" (click)="cancel()">
       {{ 'SHARED.CANCEL' | translate}}
     </ion-button>
   </ion-footer>
-
+-->
   <div *ngIf="loading" style="height:100%">
     <!-- <ion-header>
       <ion-toolbar> -->

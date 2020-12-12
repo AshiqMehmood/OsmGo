@@ -11,7 +11,7 @@
   </div>
 
  
-
+<!--
   <div *ngIf="!isHiddenTag"  (click)="addOrRemoveBookmark(tag)" style="width:36px" class="bookmark" >
     <ion-icon
       [style.color]="(tag | isBookmarked: bookmarksIds) ? '#f71000' : '#d8d8d8'"
@@ -20,13 +20,14 @@
       style="font-size: 26px; height: 100%;width: 100%;"
     ></ion-icon>
   </div>
-
+-->
   <div class="tag-text spacer" (click)="selected.emit(tag)">
-    <b [style.color]="oldTagConfig?.id === tag.id ? '#3b22dd' : 'black'">{{
+    <span [style.color]="oldTagConfig?.id === tag.id ? '#3b22dd' : 'black'">{{
       tag?.lbl ? (tag?.lbl)[languageTags] || (tag?.lbl)["en"] : null
-    }}</b>
+    }}</span>
 
     <br />
+  <!--  
     <span style="font-size: 0.8em;">{{ tag?.tags | displayTags }}</span>
     <br />
     <span style="font-size: 11px;font-style: italic;">
@@ -36,6 +37,7 @@
           : ""
       }}
     </span>
+    -->
   </div>
 
   <div class="action" *ngIf="oldTagConfig?.id === tag.id " >

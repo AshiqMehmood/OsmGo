@@ -68,6 +68,7 @@ export class ModalsContentPage implements OnInit {
 
   ) {
     this.newPosition = params.data.newPosition;
+    console.log(params.data)
     this.feature = cloneDeep(params.data.data);
 
     const originalFeatureGeometry = this.feature.properties.way_geometry ? this.feature.properties.way_geometry :  this.feature.geometry
@@ -558,6 +559,10 @@ export class ModalsContentPage implements OnInit {
       this.tagsService.removeBookMark(tag)
     }
     this.cdr.detectChanges();
+  }
+
+  goBackToSelectTag(){
+    this.openPrimaryTagModal()
   }
 
 
