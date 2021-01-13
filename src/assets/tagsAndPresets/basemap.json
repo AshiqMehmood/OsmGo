@@ -1,15 +1,5 @@
 [
-  {
-    "id": "tmsIgn",
-    "label": "Ortho IGN",
-    "type": "raster",
-    "tiles": [
-      "https://wxs.ign.fr/pratique/geoportail/wmts?LAYER=ORTHOIMAGERY.ORTHOPHOTOS&EXCEPTIONS=text/xml&FORMAT=image/jpeg&SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&STYLE=normal&TILEMATRIXSET=PM&&TILEMATRIX={z}&TILECOL={x}&TILEROW={y}"
-    ],
-    "tileSize": 256,
-    "maxzoom": 19,
-    "countryCodes": ["FR"]
-  },
+  
   {
     "id": "mapbox-satellite",
     "label": "satellite Mapbox",
@@ -29,5 +19,16 @@
     ],
     "maxzoom": 19,
     "tileSize": 256
+  },
+  {
+    "id": "tmsIgn",
+    "label": "Ortho IGN",
+    "type": "raster",
+    "tiles": [
+      "https://wxs.ign.fr/pratique/geoportail/wmts?LAYER=ORTHOIMAGERY.ORTHOPHOTOS&EXCEPTIONS=text/xml&FORMAT=image/jpeg&SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&STYLE=normal&TILEMATRIXSET=PM&&TILEMATRIX={z}&TILECOL={x}&TILEROW={y}"
+    ],
+    "tileSize": 256,
+    "maxzoom": 19,
+    "countryCodes": ["FR"]
   }
 ]

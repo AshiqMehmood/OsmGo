@@ -170,8 +170,11 @@ export class MainPage implements AfterViewInit {
     this.swUpdate.available.subscribe(event => {
       this.newVersion = true;
     });
-   
    this.presentWelcomePage();
+   
+   //set basemap to 'mapbox' on startup.
+   this.configService.setBaseSourceId('mapbox-satellite');  
+   //other maps can be selected on settings page       
   }
   async presentWelcomePage(){
       const modal = await this.modalCtrl.create({
