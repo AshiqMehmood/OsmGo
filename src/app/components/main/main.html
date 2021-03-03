@@ -156,7 +156,7 @@ mat-icon-button class="example-icon" aria-label="Example icon-button with upload
                  
     
 <!--Tap button to add new POI-->
-		<div class="d-flex justify-content-center tap-button"	
+		<ion-fab class="tap-button"	
 		*ngIf="!mapService.markerMoving && !mapService.markerMoveMoving" >
 			<button mat-raised-button color="primary" 
 			(click)="mapService.positionateMarker()" [disabled]="mapService.loadingData">
@@ -166,7 +166,7 @@ mat-icon-button class="example-icon" aria-label="Example icon-button with upload
                     </span>
                 </span>
         </button>
-	</div>
+	</ion-fab>
 
         <!--GPS button-->
 		<ion-fab  right *ngIf="!mapService.markerMoving && !mapService.markerMoveMoving"
