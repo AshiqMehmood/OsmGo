@@ -101,7 +101,7 @@ mat-icon-button class="example-icon" aria-label="Example icon-button with upload
 
 <ion-content class="ion-padding home" #mycontent>
 
-	<div id="map" style="height: 100%; width: 100%" (resized)="onMapResized($event) " class="d-flex justify-content-center">
+	<div id="map" style="height: 100%; width: 100%" (resized)="onMapResized($event)">
 
 	
 	<!--	<ion-fab style="left: 0px;top: 0px; margin:6px;" >
@@ -156,9 +156,9 @@ mat-icon-button class="example-icon" aria-label="Example icon-button with upload
                  
     
 <!--Tap button to add new POI-->
-		<ion-fab 	
+		<div class="d-flex justify-content-center tap-button"	
 		*ngIf="!mapService.markerMoving && !mapService.markerMoveMoving" >
-			<button  mat-raised-button color="primary" 
+			<button mat-raised-button color="primary" 
 			(click)="mapService.positionateMarker()" [disabled]="mapService.loadingData">
 				<mat-icon>add</mat-icon>
                 <span style="text-transform: initial; padding-left: 2px">Tap<span  style="text-transform: lowercase;"> to add new
@@ -166,7 +166,7 @@ mat-icon-button class="example-icon" aria-label="Example icon-button with upload
                     </span>
                 </span>
         </button>
-		</ion-fab>
+	</div>
 
         <!--GPS button-->
 		<ion-fab  right *ngIf="!mapService.markerMoving && !mapService.markerMoveMoving"
